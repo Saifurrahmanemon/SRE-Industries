@@ -1,12 +1,14 @@
 import { Anchor, Burger, Container, Group, Header, Title } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../../Assets/logo/AppLogo";
 import { HEADER_HEIGHT, useStyles } from "./Navbar.Styles";
 
 const userLinks = [
     {
-        link: "#",
-        label: "Privacy & Security",
+        link: "Login",
+        label: "Login",
     },
     {
         link: "#",
@@ -19,16 +21,16 @@ const userLinks = [
 ];
 const mainLinks = [
     {
-        link: "#",
-        label: "Book a demo",
+        link: "dashboard",
+        label: "Dashboard",
     },
     {
-        link: "#",
-        label: "Documentation",
+        link: "login",
+        label: "Login",
     },
     {
-        link: "#",
-        label: "Community",
+        link: "blog",
+        label: "Blog",
     },
     {
         link: "#",
@@ -41,19 +43,20 @@ const mainLinks = [
 ];
 
 export default function Navbar() {
+    const navigate = useNavigate();
     const [opened, toggleOpened] = useBooleanToggle(false);
     const { classes, cx } = useStyles();
     const [active, setActive] = useState(0);
 
     const mainItems = mainLinks.map((item, index) => (
         <Anchor
-            href={item.link}
+            component={Link}
+            to={item.link}
             key={item.label}
             className={cx(classes.mainLink, {
                 [classes.mainLinkActive]: index === active,
             })}
             onClick={(event) => {
-                event.preventDefault();
                 setActive(index);
             }}
         >
@@ -73,9 +76,11 @@ export default function Navbar() {
     ));
 
     return (
-        <Header height={HEADER_HEIGHT} mb={120}>
+        <Header height={HEADER_HEIGHT}>
             <Container className={classes.inner}>
-                <Title>Hello world</Title>
+                <Title onClick={() => navigate("/")} ml={-50} mt={10}>
+                    <Logo />
+                </Title>
                 <div className={classes.links}>
                     <Group position="right">{secondaryItems}</Group>
                     <Group

@@ -20,8 +20,8 @@ const Router = () => {
             element: <Home />,
         },
         { path: "login", element: <Login /> },
-        { path: "register", element: <SignUp /> },
-        { path: "/blog", element: <Blog /> },
+        { path: "signUp", element: <SignUp /> },
+        { path: "blog", element: <Blog /> },
         { path: "*", element: <NotFound /> },
     ]);
 };
