@@ -1,8 +1,15 @@
+import { MantineProvider } from "@mantine/core";
+import React from "react";
+import { Navbar } from "./Pages";
+import Router from "./routes";
 function App() {
     return (
-        <div>
-            <h1>hello world</h1>
-        </div>
+        <>
+            <MantineProvider>
+                <Navbar />
+                <Router />
+            </MantineProvider>
+        </>
     );
 }
 
