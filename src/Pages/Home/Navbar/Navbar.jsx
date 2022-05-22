@@ -3,6 +3,7 @@ import { useBooleanToggle } from "@mantine/hooks";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../../Assets/logo/AppLogo";
+import ModeToggleButton from "../../Components/ModeToggleButton";
 import { HEADER_HEIGHT, useStyles } from "./Navbar.Styles";
 
 const userLinks = [
@@ -78,9 +79,13 @@ export default function Navbar() {
     return (
         <Header height={HEADER_HEIGHT}>
             <Container className={classes.inner}>
-                <Title onClick={() => navigate("/")} ml={-50} mt={10}>
-                    <Logo />
-                </Title>
+                <Group>
+                    {" "}
+                    <Title onClick={() => navigate("/")} ml={-60} mt={10}>
+                        <Logo />
+                    </Title>
+                    <ModeToggleButton ml={-40} />
+                </Group>
                 <div className={classes.links}>
                     <Group position="right">{secondaryItems}</Group>
                     <Group

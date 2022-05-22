@@ -1,6 +1,6 @@
 import { useMantineTheme } from "@mantine/core";
 
-export default function Logo({ variant = "default", width = 300, ...others }) {
+export default function Logo({ variant = "default", width = 330, ...others }) {
     const theme = useMantineTheme();
     return (
         <>
@@ -15,9 +15,9 @@ export default function Logo({ variant = "default", width = 300, ...others }) {
                 <g
                     transform="translate(0.000000,1000.000000) scale(0.100000,-0.100000)"
                     fill={
-                        variant === "white"
-                            ? theme.colors[theme.colors.grey][4]
-                            : theme.colors[theme.primaryColor][9]
+                        theme.colorScheme === "dark"
+                            ? theme.white
+                            : theme.colors[theme.primaryColor][7]
                     }
                     fillRule="evenodd"
                     stroke="none"
