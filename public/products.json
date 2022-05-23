@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Headrests cores",
+        "price": "300",
+        "quantity":8,
+        "minimumQuantity":2,
+        "availableQuantity":2,
+        "description": ". Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
+        "img": "../src/Assets/products/headrest-parts8.png"
+    },
+    {
+        "name": "Headrests cores",
+        "price": "300",
+        "quantity":8,
+        "minimumQuantity":2,
+        "availableQuantity":2,
+        "description": ". Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
+        "img": "../src/Assets/products/headrest-parts8.png"
+    },
+    {
+        "name": "Headrests cores",
+        "price": "300",
+        "quantity":8,
+        "minimumQuantity":2,
+        "availableQuantity":2,
+        "description": ". Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
+        "img": "../src/Assets/products/headrest-parts8.png"
+    },
+    {
+        "name": "Headrests cores",
+        "price": "300",
+        "quantity":8,
+        "minimumQuantity":2,
+        "availableQuantity":2,
+        "description": ". Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
+        "img": "../src/Assets/products/headrest-parts8.png"
+    },
+    {
+        "name": "Headrests cores",
+        "price": "300",
+        "quantity":8,
+        "minimumQuantity":2,
+        "availableQuantity":2,
+        "description": ". Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
+        "img": "../src/Assets/products/headrest-parts8.png"
+    },
+    {
+        "name": "Headrests cores",
+        "price": "300",
+        "quantity":8,
+        "minimumQuantity":5,
+        "availableQuantity":100,
+        "description": "Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
+        "img": "https://i.ibb.co/8j0Q4vp/headrest-parts8.webp"
+    }
+
+]

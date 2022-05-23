@@ -42,7 +42,7 @@ export const useStyles = createStyles((theme) => ({
         paddingBottom: theme.spacing.sm,
         fontWeight: 700,
         borderBottom: "2px solid transparent",
-        transition: "border-color 100ms ease, color 100ms ease",
+        transition: "border-color 300ms ease, color 300ms ease",
 
         "&:hover": {
             color: theme.colorScheme === "dark" ? theme.white : theme.black,

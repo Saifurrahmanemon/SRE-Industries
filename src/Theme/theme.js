@@ -1,4 +1,4 @@
-export const theme = {
+export const customTheme = {
     headings: { fontFamily: "Roboto, sans-serif" },
 
     colors: {
@@ -54,4 +54,19 @@ export const theme = {
     primaryColor: "custom",
 
     primaryShade: { light: 6, dark: 8 },
+};
+
+export const colors = {
+    brand: [
+        "#e1e6ff",
+        "#b2b9ff",
+        "#808eff",
+        "#4f67fe",
+        "#2143fd",
+        "#0d32e4",
+        "#052cb2",
+        "#002380",
+        "#00104f",
+        "#00031f",
+    ],
 };

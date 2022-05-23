@@ -11,7 +11,7 @@ import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
     footer: {
-        marginTop: 120,
+        marginTop: theme.spacing.xl,
         paddingTop: theme.spacing.xl * 2,
         paddingBottom: theme.spacing.xl * 2,
         backgroundColor:

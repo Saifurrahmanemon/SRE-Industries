@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
         display: "flex",
         justifyContent: "space-between",
         paddingTop: theme.spacing.xl * 2,
-        paddingBottom: theme.spacing.xl * 4,
+        paddingBottom: theme.spacing.xl * 2,
     },
 
     content: {
