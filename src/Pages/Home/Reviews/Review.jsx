@@ -14,9 +14,6 @@ const useStyles = createStyles((theme) => ({
             transition: "background-color 500ms ease ",
         },
         width: theme.spacing.xl * 20,
-        [theme.fn.smallerThan["md"]]: {
-            marginInline: theme.spacing.xl,
-        },
     },
 
     body: {
@@ -32,7 +29,7 @@ export default function Review({ review }) {
     return (
         <Paper withBorder radius="md" shadow="lg" className={classes.comment}>
             <Group noWrap position="apart">
-                <Box component="span" sx={{ display: "flex" }}>
+                <Box component="span" style={{ display: "flex" }}>
                     <Avatar src={image} mr="md" alt={name} radius="xl" />
                     <div>
                         <Text size="sm">{name}</Text>

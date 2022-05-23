@@ -22,8 +22,8 @@ const userLinks = [
 ];
 const mainLinks = [
     {
-        link: "dashboard",
-        label: "Dashboard",
+        link: "",
+        label: "Home",
     },
     {
         link: "login",
@@ -34,12 +34,12 @@ const mainLinks = [
         label: "Blog",
     },
     {
-        link: "#",
-        label: "Academy",
+        link: "dashboard",
+        label: "Dashboard",
     },
     {
-        link: "#",
-        label: "Forums",
+        link: "portfolio",
+        label: "Portfolio",
     },
 ];
 

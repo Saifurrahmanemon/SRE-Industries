@@ -12,12 +12,53 @@ import {
     Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Lock, Mail } from "tabler-icons-react";
+import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 import SocialAuth from "./SocialAuth";
 export default function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
+
+    useEffect(() => {
+        if (user) {
+            toast.success(
+                `Welcome back ${user?.user?.displayName} You have successfully logged in! 😊`
+            );
+            navigate(from, { replace: true });
+        }
+    }, [user, from, navigate]);
+    useEffect(() => {
+        if (error) {
+            switch (error?.code) {
+                case "auth/invalid-email":
+                    toast("Invalid email, please provide a valid email");
+                    break;
+                case "auth/invalid-password":
+                    toast("invalid password.😒");
+                    break;
+                case "auth/user-not-found":
+                    toast("User not found. 🤔");
+                    break;
+                case "auth/wrong-password":
+                    toast("Wrong password. 😑");
+                    break;
+
+                default:
+                    toast("something went wrong. 🤯");
+            }
+        }
+    }, [error]);
+
+    // for form validation
     const form = useForm({
         initialValues: {
             email: "",
@@ -35,10 +76,12 @@ export default function Login() {
         }),
     });
 
-    const handleLoginOnSubmit = (values) => {
-        console.log(values);
+    if (loading) {
+        return <Loading />;
+    }
+    const handleLoginOnSubmit = async ({ email, password }) => {
+        await signInWithEmailAndPassword(email, password);
     };
-
     return (
         <div>
             <Container size={420}>
@@ -114,7 +157,6 @@ export default function Login() {
                             variant="outline"
                             fullWidth
                             mt="xl"
-
                         >
                             Sign in
                         </Button>

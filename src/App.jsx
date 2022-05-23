@@ -1,9 +1,12 @@
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Footer, Navbar } from "./Pages";
 import Router from "./routes";
 import { colors } from "./Theme/theme.js";
+
 // Create a client
 const queryClient = new QueryClient();
 
@@ -32,6 +35,7 @@ export default function App() {
                     <Navbar />
                     <Router />
                     <Footer />
+                    <ToastContainer />
                 </MantineProvider>
             </ColorSchemeProvider>
         </QueryClientProvider>

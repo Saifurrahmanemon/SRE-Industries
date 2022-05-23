@@ -7,6 +7,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/Users/MyOrders";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
+import Portfolio from "./Pages/Portfolio/Portfolio";
 
 const Router = () => {
     return useRoutes([
@@ -22,6 +23,7 @@ const Router = () => {
         { path: "login", element: <Login /> },
         { path: "signUp", element: <SignUp /> },
         { path: "blog", element: <Blog /> },
+        { path: "portfolio", element: <Portfolio /> },
         { path: "*", element: <NotFound /> },
     ]);
 };

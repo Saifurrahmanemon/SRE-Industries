@@ -9,18 +9,57 @@ import {
     PasswordInput,
     Text,
     TextInput,
-    Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Lock, Mail } from "tabler-icons-react";
+import auth from "../../firebase.init";
+import HighlightName from "../Components/HighlightName";
+import Loading from "../Shared/Loading";
 import SocialAuth from "./SocialAuth";
 
 export default function SignUp() {
+    // for creating user
+    const [createUserWithEmailAndPassword, user, loading, error] =
+        useCreateUserWithEmailAndPassword(auth, {
+            sendEmailVerification: true,
+        });
+    const [updateProfile, updating] = useUpdateProfile(auth);
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
 
-    // for form validation
+    useEffect(() => {
+        if (user) {
+            toast.success("Yay !!  You have successfully Registered ! 😊");
+
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, user]);
+
+    //  signup error handle
+    useEffect(() => {
+        if (error) {
+            switch (error?.code) {
+                case "auth/email-already-in-use":
+                    toast.error("Email already in use 😔😔");
+                    break;
+                case "auth/weak-password":
+                    toast.error("Password is too weak 😕");
+                    break;
+                default:
+                    toast.error("something went wrong 🤯🤯");
+            }
+        }
+    }, [error]);
+
+    //🔑 for form validation 🔑
     const form = useForm({
         initialValues: {
             email: "",
@@ -44,23 +83,20 @@ export default function SignUp() {
         }),
     });
 
-    const handleRegisterOnSubmit = async ({ name, password, email }) => {};
+    const handleSignUpOnSubmit = async ({ name, password, email }) => {
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+    };
 
+    if (loading || updating) {
+        return <Loading></Loading>;
+    }
     return (
         <Container size={420} my={50}>
-            <Title
-                align="center"
-                sx={(theme) => ({
-                    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-                    fontWeight: 900,
-                })}
-                mt={40}
-            >
-                Welcome to Website!
-            </Title>
+            <HighlightName mt={30}>Welcome to SRE Industries</HighlightName>
             <Text color="dimmed" size="sm" align="center" mt={5}>
                 Already have an account yet?{" "}
-                <Anchor href="#" size="sm" onClick={() => navigate("/login")}>
+                <Anchor size="sm" onClick={() => navigate("/login")}>
                     Please Login
                 </Anchor>
             </Text>
@@ -73,7 +109,7 @@ export default function SignUp() {
                     my="lg"
                 />
 
-                <form onSubmit={form.onSubmit(handleRegisterOnSubmit)}>
+                <form onSubmit={form.onSubmit(handleSignUpOnSubmit)}>
                     <Group direction="column" grow>
                         <TextInput
                             required
@@ -144,7 +180,13 @@ export default function SignUp() {
                             />
                         </Group>
                     </Group>
-                    <Button type="submit" variant="outline" fullWidth mt="xl">
+                    <Button
+                        type="submit"
+                        disabled={!form.values.terms}
+                        variant="outline"
+                        fullWidth
+                        mt="xl"
+                    >
                         Sign in
                     </Button>
                 </form>

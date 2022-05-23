@@ -221,7 +221,7 @@ export default function Footer() {
             </Container>
             <Container className={classes.afterFooter}>
                 <Text color="dimmed" size="sm">
-                    © 2020 mantine.dev. All rights reserved.
+                    © 2022 All rights reserved.
                 </Text>
 
                 <Group
