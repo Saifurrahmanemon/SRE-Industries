@@ -1,7 +1,7 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
 import { MoonStars, Sun } from "tabler-icons-react";
 
-export default function ModeToggleButton(props) {
+export default function MoodToggleButton(props) {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const dark = colorScheme === "dark";
 

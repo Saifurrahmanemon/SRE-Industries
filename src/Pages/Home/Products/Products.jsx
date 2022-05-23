@@ -1,6 +1,7 @@
 import { Box, Grid, useMantineTheme } from "@mantine/core";
 import React from "react";
 import { useQuery } from "react-query";
+import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import Product from "./Product";
 
@@ -15,7 +16,7 @@ const Products = () => {
         fetch("products.json").then((res) => res.json())
     );
 
-    if (isLoading) return "Loading...";
+    if (isLoading) return <Loading />;
 
     if (error) return "An error has occurred: " + error.message;
 

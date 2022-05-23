@@ -1,7 +1,7 @@
 import { Group, Highlight, Text, ThemeIcon } from "@mantine/core";
 import { ArrowUpRight } from "tabler-icons-react";
 import { useStyles } from "./Features.styles";
-
+const highlight = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 export default function Feature({
     icon: Icon,
     title,
@@ -39,7 +39,23 @@ export default function Feature({
                     </ThemeIcon>
                 </Group>
 
-                <Highlight color="dimmed" weight={500} size="md">
+                <Highlight
+                    highlight={highlight}
+                    color="dimmed"
+                    weight={500}
+                    size="md"
+                    mt="sm"
+                    highlightStyles={(theme) => ({
+                        backgroundImage: theme.fn.linearGradient(
+                            45,
+                            theme.colors[theme.primaryColor][3],
+                            theme.colors[theme.primaryColor][9]
+                        ),
+                        fontWeight: 700,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                    })}
+                >
                     {description}
                 </Highlight>
             </div>
