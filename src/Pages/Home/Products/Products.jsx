@@ -1,4 +1,4 @@
-import { Grid } from "@mantine/core";
+import { Box, Grid, useMantineTheme } from "@mantine/core";
 import React from "react";
 import { useQuery } from "react-query";
 import SectionTitle from "../../Shared/SectionTitle";
@@ -6,6 +6,7 @@ import Product from "./Product";
 
 //TODO: load data properly
 const Products = () => {
+    const theme = useMantineTheme();
     const {
         data: products,
         isLoading,
@@ -17,10 +18,10 @@ const Products = () => {
     if (isLoading) return "Loading...";
 
     if (error) return "An error has occurred: " + error.message;
-    console.log(products);
+
     return (
-        <div>
-            <SectionTitle mb="sm">Parts</SectionTitle>
+        <Box mb={theme.spacing.xl * 2}>
+            <SectionTitle mb="xl">Parts</SectionTitle>
             <Grid>
                 {" "}
                 {products.map((products, index) => (
@@ -29,7 +30,7 @@ const Products = () => {
                     </Grid.Col>
                 ))}
             </Grid>
-        </div>
+        </Box>
     );
 };
 

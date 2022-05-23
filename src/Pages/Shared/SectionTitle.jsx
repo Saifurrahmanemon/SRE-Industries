@@ -3,6 +3,7 @@ import React from "react";
 const useStyles = createStyles((theme) => ({
     title: {
         fontSize: 30,
+        textTransform: "uppercase",
         paddingBottom: theme.spacing.sm,
         borderBottom: "2px solid transparent",
         transition: "border-color 500ms ",
