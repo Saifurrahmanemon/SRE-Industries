@@ -1,5 +1,16 @@
-import { Badge, Card, createStyles, Group, Image, Text } from "@mantine/core";
+import {
+    ActionIcon,
+    Badge,
+    Button,
+    Card,
+    createStyles,
+    Group,
+    Image,
+    Text,
+    useMantineTheme,
+} from "@mantine/core";
 import React from "react";
+import { Heart, ShoppingCart } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -19,13 +30,14 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Product({ products }) {
+    const theme = useMantineTheme();
     const {
         img,
         name,
         description,
         minimumQuantity,
         availableQuantity,
-        quantity,
+
         price,
     } = products;
     const { classes } = useStyles();
@@ -68,6 +80,19 @@ export default function Product({ products }) {
                                 / per unit
                             </Text>
                         </Group>
+                    </Group>
+                    <Group noWrap spacing="sm" my="sm" position="apart">
+                        <Button
+                            uppercase
+                            variant="light"
+                            px="xl"
+                            leftIcon={<ShoppingCart size={18} />}
+                        >
+                            Purchase
+                        </Button>
+                        <ActionIcon variant="hover">
+                            <Heart size={22} color={theme.colors.red[6]} />
+                        </ActionIcon>
                     </Group>
                 </div>
             </Group>
