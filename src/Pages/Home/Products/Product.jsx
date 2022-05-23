@@ -44,7 +44,7 @@ export default function Product({ products }) {
     return (
         <Card withBorder shadow="xl" radius="md" p={0} className={classes.card}>
             <Group noWrap spacing={0}>
-                <Image withPlaceholder src={img} height={140} width={140} />
+                <Image withPlaceholder src={img} height={160} width={140} />
                 <div className={classes.body}>
                     <Text transform="uppercase" weight={900} size="xs">
                         {name}
@@ -54,8 +54,9 @@ export default function Product({ products }) {
                         className={classes.text}
                         mt="xs"
                         mb="md"
+                        lineClamp={4}
                     >
-                        {description}
+                        {description}...
                     </Text>
                     <Group noWrap spacing="xs">
                         <Text size="sm" className={classes.text} color="dimmed">

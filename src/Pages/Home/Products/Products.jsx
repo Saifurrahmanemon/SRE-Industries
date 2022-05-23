@@ -1,6 +1,6 @@
 import { Box, Grid, useMantineTheme } from "@mantine/core";
 import React from "react";
-import { useQuery } from "react-query";
+import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import Product from "./Product";
@@ -8,13 +8,7 @@ import Product from "./Product";
 //TODO: load data properly
 const Products = () => {
     const theme = useMantineTheme();
-    const {
-        data: products,
-        isLoading,
-        error,
-    } = useQuery("products", () =>
-        fetch("products.json").then((res) => res.json())
-    );
+    const { products, isLoading, error } = useParts();
 
     if (isLoading) return <Loading />;
 
