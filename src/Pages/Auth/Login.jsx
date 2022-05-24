@@ -18,6 +18,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Lock, Mail } from "tabler-icons-react";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 import Loading from "../Shared/Loading";
 import SocialAuth from "./SocialAuth";
 export default function Login() {
@@ -27,15 +28,16 @@ export default function Login() {
     let from = location.state?.from?.pathname || "/";
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
+    const [token] = useToken(user);
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             toast.success(
                 `Welcome back ${user?.user?.displayName} You have successfully logged in! 😊`
             );
             navigate(from, { replace: true });
         }
-    }, [user, from, navigate]);
+    }, [user, from, navigate, token]);
     useEffect(() => {
         if (error) {
             switch (error?.code) {

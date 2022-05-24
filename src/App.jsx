@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Footer, Navbar } from "./Pages";
+import { Navbar } from "./Pages";
 import Router from "./routes";
 import { colors } from "./Theme/theme.js";
 
@@ -34,7 +34,7 @@ export default function App() {
                 >
                     <Navbar />
                     <Router />
-                    <Footer />
+                    {/* <Footer /> */}
                     <ToastContainer />
                 </MantineProvider>
             </ColorSchemeProvider>

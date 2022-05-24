@@ -1,9 +1,9 @@
 import { Container, Group, Image, Paper, SimpleGrid } from "@mantine/core";
-import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import axiosPrivate from "../../API/axiosPrivate";
 import { API_URL } from "../../API/rootURL";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
@@ -16,16 +16,9 @@ import UserDetails from "./UserDetails";
  * You will display an error and disable the purchase button in both cases.
  */
 
-// const getChild = (height) => (
-//     <Skeleton height={height} radius="md" animate={false} />
-// );
 const BASE_HEIGHT = 360;
-// const getSubHeight = (children, spacing) =>
-//     BASE_HEIGHT / children - spacing * ((children - 1) / children);
 
 const Purchase = () => {
-    // const theme = useMantineTheme();
-
     const [user] = useAuthState(auth);
     const { purchaseId } = useParams();
 
@@ -33,7 +26,7 @@ const Purchase = () => {
     const email = user?.email;
 
     const { data: product, isLoading } = useQuery("parts", () =>
-        axios.get(`${API_URL}parts/${purchaseId}`)
+        axiosPrivate.get(`${API_URL}parts/${purchaseId}`)
     );
 
     if (isLoading) {
@@ -49,6 +42,16 @@ const Purchase = () => {
     return (
         <Container my="md">
             <SimpleGrid cols={2} breakpoints={[{ maxWidth: "xs", cols: 1 }]}>
+                <Group direction="column">
+                    <ProductDetails product={product.data} />
+                    <UserDetails
+                        name={name}
+                        email={email}
+                        minimumQuantity={minimumQuantity}
+                        availableQuantity={availableQuantity}
+                        productId={purchaseId}
+                    />
+                </Group>
                 <Paper height={BASE_HEIGHT}>
                     <Group>
                         <Image
@@ -62,16 +65,6 @@ const Purchase = () => {
                         />
                     </Group>
                 </Paper>
-
-                <Group direction="column">
-                    <ProductDetails product={product.data} />
-                    <UserDetails
-                        name={name}
-                        email={email}
-                        minimumQuantity={minimumQuantity}
-                        availableQuantity={availableQuantity}
-                    />
-                </Group>
             </SimpleGrid>
         </Container>
     );

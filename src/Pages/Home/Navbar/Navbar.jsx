@@ -1,4 +1,14 @@
-import { Anchor, Burger, Container, Group, Header, Title } from "@mantine/core";
+import {
+    Anchor,
+    Badge,
+    Burger,
+    Container,
+    Group,
+    Header,
+    Paper,
+    Title,
+    Transition,
+} from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { signOut } from "firebase/auth";
 import React, { useState } from "react";
@@ -11,16 +21,6 @@ import CustomSignInOutButton from "../../Components/CustomSignInOutButton";
 import MoodToggleButton from "../../Components/MoodToggleButton";
 import { HEADER_HEIGHT, useStyles } from "./Navbar.Styles";
 
-const userLinks = [
-    {
-        link: "#",
-        label: "Account settings",
-    },
-    {
-        link: "#",
-        label: "Support options",
-    },
-];
 const mainLinks = [
     {
         link: "",
@@ -76,17 +76,6 @@ export default function Navbar() {
         </Anchor>
     ));
 
-    const secondaryItems = userLinks.map((item) => (
-        <Anchor
-            href={item.link}
-            key={item.label}
-            onClick={(event) => event.preventDefault()}
-            className={classes.secondaryLink}
-        >
-            {item.label}
-        </Anchor>
-    ));
-
     return (
         <Header height={HEADER_HEIGHT}>
             <Container className={classes.inner}>
@@ -114,7 +103,18 @@ export default function Navbar() {
                     )}
                 </Group>
                 <div className={classes.links}>
-                    <Group position="right">{secondaryItems}</Group>
+                    <Group position="right" mt={-5} mb={5}>
+                        <Badge sx={{ marginRight: 0 }} radius="md" size="sm">
+                            {user ? user.displayName : "Guest"}
+                        </Badge>
+                        {/* <Avatar
+                            sx={{ marginLeft: -20 }}
+                            radius="xl"
+                            color="indigo"
+                            src={user?.photoURL}
+                            size={20}
+                        ></Avatar> */}
+                    </Group>
                     <Group
                         spacing={0}
                         position="right"
@@ -129,6 +129,21 @@ export default function Navbar() {
                     className={classes.burger}
                     size="sm"
                 />
+                <Transition
+                    transition="pop-top-right"
+                    duration={200}
+                    mounted={opened}
+                >
+                    {(styles) => (
+                        <Paper
+                            className={classes.dropdown}
+                            withBorder
+                            style={styles}
+                        >
+                            {mainItems}
+                        </Paper>
+                    )}
+                </Transition>
             </Container>
         </Header>
     );

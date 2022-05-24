@@ -20,6 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Lock, Mail } from "tabler-icons-react";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 import HighlightName from "../Components/HighlightName";
 import Loading from "../Shared/Loading";
 import SocialAuth from "./SocialAuth";
@@ -34,14 +35,14 @@ export default function SignUp() {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
-
+    const [token] = useToken(user);
     useEffect(() => {
-        if (user) {
+        if (token) {
             toast.success("Yay !!  You have successfully Registered ! 😊");
 
             navigate(from, { replace: true });
         }
-    }, [from, navigate, user]);
+    }, [from, navigate, token]);
 
     //  signup error handle
     useEffect(() => {

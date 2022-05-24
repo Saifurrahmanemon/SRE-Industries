@@ -9,6 +9,20 @@ export const useStyles = createStyles((theme) => ({
         alignItems: "center",
         justifyContent: "space-between",
     },
+    dropdown: {
+        position: "absolute",
+        top: HEADER_HEIGHT,
+        left: 0,
+        right: 0,
+        zIndex: 0,
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+        borderTopWidth: 0,
+        overflow: "hidden",
+        [theme.fn.largerThan("sm")]: {
+            display: "none",
+        },
+    },
 
     burger: {
         [theme.fn.largerThan("sm")]: {

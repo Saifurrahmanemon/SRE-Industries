@@ -6,20 +6,56 @@ import {
     Paper,
     TextInput,
 } from "@mantine/core";
-import React, { useRef, useState } from "react";
+import { useForm } from "@mantine/form";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Minus, Plus } from "tabler-icons-react";
+import axiosPrivate from "../../API/axiosPrivate";
+import { API_URL } from "../../API/rootURL";
 import { useStyles } from "./UserDetails.styles";
-
 const UserDetails = ({
     email,
     name,
     minimumQuantity: min,
     availableQuantity: max,
+    productId,
 }) => {
+    const [value, setValue] = useState(min + 1);
     const { classes } = useStyles();
 
-    const [value, setValue] = useState(min);
-    const handlers = useRef();
+    useEffect(() => {
+        if (value <= min) {
+            toast.error("Can not order below minimum quantity ");
+        }
+
+        if (value >= max) {
+            toast.error("Can not order over available quantity");
+        }
+    }, [max, min, value]);
+
+    const form = useForm({
+        initialValues: {
+            email: email,
+            name: name,
+            productId: productId,
+            quantity: min,
+            address: "",
+            phone: Number,
+        },
+    });
+    console.log(value);
+
+    const handleOnSubmit = async (values) => {
+        const { data } = await axiosPrivate.post(`${API_URL}orders`, values);
+        if (data.success) {
+            toast.success("Order placed successfully📦");
+        } else {
+            toast.error("Can not Order Same Product Twice");
+        }
+        if (data.error) {
+            toast.error(data.error);
+        }
+    };
 
     return (
         <>
@@ -27,7 +63,10 @@ const UserDetails = ({
             <Paper shadow="xl" withBorder radius="lg" p="lg">
                 <Group>
                     <Group direction="column">
-                        <div className={classes.form}>
+                        <form
+                            onSubmit={form.onSubmit(handleOnSubmit)}
+                            className={classes.form}
+                        >
                             <TextInput
                                 label="Email"
                                 placeholder={email}
@@ -53,6 +92,7 @@ const UserDetails = ({
                                 label="Phone Number"
                                 hideControls
                                 mt="md"
+                                {...form.getInputProps("phone")}
                             />
                             <TextInput
                                 label="Shipping address"
@@ -62,12 +102,13 @@ const UserDetails = ({
                                     input: classes.input,
                                     label: classes.inputLabel,
                                 }}
+                                {...form.getInputProps("address")}
                             />
                             <div className={classes.quantityWrapper}>
                                 <ActionIcon
                                     size={28}
                                     variant="transparent"
-                                    onClick={() => handlers.current.decrement()}
+                                    onClick={() => setValue((prev) => prev - 1)}
                                     disabled={value === min}
                                     className={classes.quantityControl}
                                     onMouseDown={(event) =>
@@ -81,9 +122,13 @@ const UserDetails = ({
                                     variant="unstyled"
                                     min={min}
                                     max={max}
-                                    handlersRef={handlers}
                                     value={value}
-                                    onChange={setValue}
+                                    onChange={(event) =>
+                                        form.setFieldValue(
+                                            "quantity",
+                                            event.currentTarget.value
+                                        )
+                                    }
                                     classNames={{
                                         input: classes.quantityInput,
                                     }}
@@ -92,7 +137,7 @@ const UserDetails = ({
                                 <ActionIcon
                                     size={28}
                                     variant="transparent"
-                                    onClick={() => handlers.current.increment()}
+                                    onClick={() => setValue((prev) => prev + 1)}
                                     disabled={value === max}
                                     className={classes.quantityControl}
                                     onMouseDown={(event) =>
@@ -103,12 +148,15 @@ const UserDetails = ({
                                 </ActionIcon>
                             </div>
 
-                            <Group position="left" mt="md">
-                                <Button className={classes.control}>
-                                    Send message
+                            <Group position="left" variant="light" mt="md">
+                                <Button
+                                    type="submit"
+                                    className={classes.control}
+                                >
+                                    Purchase
                                 </Button>
                             </Group>
-                        </div>
+                        </form>
                     </Group>
                 </Group>
             </Paper>
