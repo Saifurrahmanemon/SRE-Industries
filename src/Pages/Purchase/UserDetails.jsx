@@ -13,13 +13,14 @@ import { Minus, Plus } from "tabler-icons-react";
 import axiosPrivate from "../../API/axiosPrivate";
 import { API_URL } from "../../API/rootURL";
 import { useStyles } from "./UserDetails.styles";
-const UserDetails = ({
-    email,
-    name,
-    minimumQuantity: min,
-    availableQuantity: max,
-    productId,
-}) => {
+const UserDetails = ({ email, name, productId, product }) => {
+    const {
+        img,
+        price,
+        minimumQuantity: min,
+        availableQuantity: max,
+        name: productName,
+    } = product;
     const [value, setValue] = useState(min + 1);
     const { classes } = useStyles();
 
@@ -37,16 +38,29 @@ const UserDetails = ({
         initialValues: {
             email: email,
             name: name,
-            productId: productId,
             quantity: min,
             address: "",
             phone: Number,
         },
     });
-    console.log(value);
 
-    const handleOnSubmit = async (values) => {
-        const { data } = await axiosPrivate.post(`${API_URL}orders`, values);
+    const handleOnSubmit = async ({ email, address, phone, quantity }) => {
+        const productDetails = {
+            productName: productName,
+            img: img,
+            productId: productId,
+            email,
+            address,
+            phone,
+            quantity,
+            price: quantity * price,
+            name,
+        };
+
+        const { data } = await axiosPrivate.post(
+            `${API_URL}orders`,
+            productDetails
+        );
         if (data.success) {
             toast.success("Order placed successfully📦");
         } else {
@@ -91,6 +105,7 @@ const UserDetails = ({
                                 placeholder="+88"
                                 label="Phone Number"
                                 hideControls
+                                required
                                 mt="md"
                                 {...form.getInputProps("phone")}
                             />
@@ -98,6 +113,7 @@ const UserDetails = ({
                                 label="Shipping address"
                                 placeholder="15329 Huston 21st"
                                 mt="md"
+                                required
                                 classNames={{
                                     input: classes.input,
                                     label: classes.inputLabel,

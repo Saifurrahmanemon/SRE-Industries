@@ -1,11 +1,9 @@
 import { Container, Group, Image, Paper, SimpleGrid } from "@mantine/core";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import axiosPrivate from "../../API/axiosPrivate";
-import { API_URL } from "../../API/rootURL";
 import auth from "../../firebase.init";
+import useProductDetails from "../../Hooks/useProductDetails";
 import Loading from "../Shared/Loading";
 import ProductDetails from "./ProductDetails";
 import UserDetails from "./UserDetails";
@@ -24,10 +22,8 @@ const Purchase = () => {
 
     const name = user?.displayName;
     const email = user?.email;
-
-    const { data: product, isLoading } = useQuery("parts", () =>
-        axiosPrivate.get(`${API_URL}parts/${purchaseId}`)
-    );
+    // this hook will return full info about product
+    const { product, isLoading } = useProductDetails(purchaseId);
 
     if (isLoading) {
         return <Loading />;
@@ -37,6 +33,7 @@ const Purchase = () => {
         name: productName,
         minimumQuantity,
         availableQuantity,
+        price,
     } = product.data;
 
     return (
@@ -47,9 +44,8 @@ const Purchase = () => {
                     <UserDetails
                         name={name}
                         email={email}
-                        minimumQuantity={minimumQuantity}
-                        availableQuantity={availableQuantity}
                         productId={purchaseId}
+                        product={product.data}
                     />
                 </Group>
                 <Paper height={BASE_HEIGHT}>

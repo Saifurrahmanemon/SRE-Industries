@@ -2,13 +2,13 @@ import { Anchor, createStyles } from "@mantine/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+    Ballpen,
     BellRinging,
     DatabaseImport,
-    Fingerprint,
     Key,
-    Receipt2,
     Settings,
     TwoFA,
+    Users,
 } from "tabler-icons-react";
 
 const useStyles = createStyles((theme, _params, getRef) => {
@@ -98,8 +98,8 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 const data = [
     { link: "/dashboard/myorders", label: "My Orders", icon: BellRinging },
-    { link: "/dashboard/myprofile", label: "My Profile", icon: Receipt2 },
-    { link: "/dashboard/addreview", label: "Add Review", icon: Fingerprint },
+    { link: "/dashboard/myprofile", label: "My Profile", icon: Users },
+    { link: "/dashboard/addreview", label: "Add Review", icon: Ballpen },
     { link: "", label: "SSH Keys", icon: Key },
     { link: "", label: "Databases", icon: DatabaseImport },
     { link: "", label: "Authentication", icon: TwoFA },

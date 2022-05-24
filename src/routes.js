@@ -17,7 +17,11 @@ const Router = () => {
     return useRoutes([
         {
             path: "/dashboard",
-            element: <Dashboard />,
+            element: (
+                <RequireAuth>
+                    <Dashboard />
+                </RequireAuth>
+            ),
             children: [
                 { path: "myorders", element: <MyOrders /> },
                 { path: "myprofile", element: <MyProfile /> },
