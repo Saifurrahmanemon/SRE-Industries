@@ -5,6 +5,8 @@ import Login from "./Pages/Auth/Login";
 import SignUp from "./Pages/Auth/SignUp";
 import Blog from "./Pages/Blog/Blog";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
+import AddReview from "./Pages/Dashboard/Users/AddReview";
 import MyOrders from "./Pages/Dashboard/Users/MyOrders";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
@@ -16,7 +18,11 @@ const Router = () => {
         {
             path: "/dashboard",
             element: <Dashboard />,
-            children: [{ path: "myorders", element: <MyOrders /> }],
+            children: [
+                { path: "myorders", element: <MyOrders /> },
+                { path: "myprofile", element: <MyProfile /> },
+                { path: "addreview", element: <AddReview /> },
+            ],
         },
         {
             path: "/",

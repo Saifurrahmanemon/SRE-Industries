@@ -1,5 +1,6 @@
-import { createStyles } from "@mantine/core";
+import { Anchor, createStyles } from "@mantine/core";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
     BellRinging,
     DatabaseImport,
@@ -96,9 +97,9 @@ const useStyles = createStyles((theme, _params, getRef) => {
 });
 
 const data = [
-    { link: "", label: "Notifications", icon: BellRinging },
-    { link: "", label: "Billing", icon: Receipt2 },
-    { link: "", label: "Security", icon: Fingerprint },
+    { link: "/dashboard/myorders", label: "My Orders", icon: BellRinging },
+    { link: "/dashboard/myprofile", label: "My Profile", icon: Receipt2 },
+    { link: "/dashboard/addreview", label: "Add Review", icon: Fingerprint },
     { link: "", label: "SSH Keys", icon: Key },
     { link: "", label: "Databases", icon: DatabaseImport },
     { link: "", label: "Authentication", icon: TwoFA },
@@ -112,20 +113,21 @@ export function MainLinks() {
         <>
             {data.map((item, index) => {
                 return (
-                    <a
+                    <Anchor
                         className={cx(classes.link, {
                             [classes.linkActive]: item.label === active,
                         })}
                         href={item.link}
                         key={index}
+                        component={Link}
+                        to={item.link}
                         onClick={(event) => {
-                            event.preventDefault();
                             setActive(item.label);
                         }}
                     >
                         <item.icon className={classes.linkIcon} />
                         <span>{item.label}</span>
-                    </a>
+                    </Anchor>
                 );
             })}
         </>

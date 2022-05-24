@@ -9,7 +9,7 @@ export default function Dashboard() {
         <AppShell
             padding="md"
             navbar={
-                <Navbar width={{ base: 300 }} height={500} p="xs">
+                <Navbar width={{ base: 300 }} p="xs">
                     <Navbar.Section grow mt="xs">
                         <MainLinks />
                     </Navbar.Section>
