@@ -10,6 +10,7 @@ import {
     useMantineTheme,
 } from "@mantine/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Heart, ShoppingCart } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -29,17 +30,18 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function Product({ products }) {
+export default function Product({ product }) {
     const theme = useMantineTheme();
+    const navigate = useNavigate();
     const {
         img,
         name,
         description,
         minimumQuantity,
         availableQuantity,
-
+        _id,
         price,
-    } = products;
+    } = product;
     const { classes } = useStyles();
     return (
         <Card withBorder shadow="xl" radius="md" p={0} className={classes.card}>
@@ -88,6 +90,9 @@ export default function Product({ products }) {
                             variant="light"
                             px="xl"
                             leftIcon={<ShoppingCart size={18} />}
+                            onClick={() => {
+                                navigate(`/purchase/${_id}`);
+                            }}
                         >
                             Purchase
                         </Button>

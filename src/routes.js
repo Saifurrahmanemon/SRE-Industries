@@ -1,5 +1,6 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
+import { RequireAuth } from "./Pages";
 import Login from "./Pages/Auth/Login";
 import SignUp from "./Pages/Auth/SignUp";
 import Blog from "./Pages/Blog/Blog";
@@ -8,6 +9,7 @@ import MyOrders from "./Pages/Dashboard/Users/MyOrders";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
+import Purchase from "./Pages/Purchase/Purchase";
 
 const Router = () => {
     return useRoutes([
@@ -22,6 +24,14 @@ const Router = () => {
         },
         { path: "login", element: <Login /> },
         { path: "signUp", element: <SignUp /> },
+        {
+            path: "purchase/:purchaseId",
+            element: (
+                <RequireAuth>
+                    <Purchase />
+                </RequireAuth>
+            ),
+        },
         { path: "blog", element: <Blog /> },
         { path: "portfolio", element: <Portfolio /> },
         { path: "*", element: <NotFound /> },

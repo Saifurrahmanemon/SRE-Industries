@@ -5,7 +5,7 @@ import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import Product from "./Product";
 
-//TODO: load data properly
+
 const Products = () => {
     const theme = useMantineTheme();
     const { products, isLoading, error } = useParts();
@@ -19,9 +19,9 @@ const Products = () => {
             <SectionTitle mb="xl">Parts</SectionTitle>
             <Grid>
                 {" "}
-                {products.map((products, index) => (
-                    <Grid.Col md={6} lg={3} key={index}>
-                        <Product products={products} key={index}></Product>
+                {products.map((product) => (
+                    <Grid.Col md={6} lg={3} key={product._id}>
+                        <Product product={product}></Product>
                     </Grid.Col>
                 ))}
             </Grid>

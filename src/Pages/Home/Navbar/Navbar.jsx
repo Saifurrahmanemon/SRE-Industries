@@ -1,16 +1,17 @@
 import { Anchor, Burger, Container, Group, Header, Title } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { Login, Logout } from "tabler-icons-react";
 import Logo from "../../../Assets/logo/AppLogo";
+import auth from "../../../firebase.init";
+import CustomSignInOutButton from "../../Components/CustomSignInOutButton";
 import MoodToggleButton from "../../Components/MoodToggleButton";
 import { HEADER_HEIGHT, useStyles } from "./Navbar.Styles";
 
 const userLinks = [
-    {
-        link: "Login",
-        label: "Login",
-    },
     {
         link: "#",
         label: "Account settings",
@@ -25,17 +26,14 @@ const mainLinks = [
         link: "",
         label: "Home",
     },
+
     {
-        link: "login",
-        label: "Login",
+        link: "dashboard",
+        label: "Dashboard",
     },
     {
         link: "blog",
         label: "Blog",
-    },
-    {
-        link: "dashboard",
-        label: "Dashboard",
     },
     {
         link: "portfolio",
@@ -48,6 +46,19 @@ export default function Navbar() {
     const [opened, toggleOpened] = useBooleanToggle(false);
     const { classes, cx } = useStyles();
     const [active, setActive] = useState(0);
+    const [user] = useAuthState(auth);
+
+    // for sign out
+
+    const handleSignOut = () => {
+        signOut(auth);
+    };
+
+    //for sign in
+
+    const handleSignIn = () => {
+        navigate("/login");
+    };
 
     const mainItems = mainLinks.map((item, index) => (
         <Anchor
@@ -85,6 +96,22 @@ export default function Navbar() {
                         <Logo />
                     </Title>
                     <MoodToggleButton ml={-40} />
+                    {user ? (
+                        <CustomSignInOutButton
+                            leftIcon={<Logout color="red" strokeOpacity={1} />}
+                            color="red"
+                            onClick={handleSignOut}
+                        >
+                            Sign out
+                        </CustomSignInOutButton>
+                    ) : (
+                        <CustomSignInOutButton
+                            leftIcon={<Login />}
+                            onClick={handleSignIn}
+                        >
+                            Sign in
+                        </CustomSignInOutButton>
+                    )}
                 </Group>
                 <div className={classes.links}>
                     <Group position="right">{secondaryItems}</Group>
