@@ -4,6 +4,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
+import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 
 const useStyles = createStyles((theme) => ({
    root: {
@@ -53,29 +54,33 @@ export default function UpdateProfile({ userInfo, refetch }) {
    };
 
    return (
-      <form onSubmit={form.onSubmit(handleOnSubmit)}>
-         <TextInput
-            label="Address"
-            placeholder={address}
-            classNames={classes}
-            {...form.getInputProps("address")}
-         />
-         <TextInput
-            label="LinkedIn"
-            placeholder={"saifur rahman"}
-            classNames={classes}
-            {...form.getInputProps("linkedIn")}
-         />
-         <NumberInput
-            label="Phone Number"
-            placeholder={phone}
-            classNames={classes}
-            hideControls
-            {...form.getInputProps("phone")}
-         />
-         <Button type="submit" mt="md" variant="light">
-            Update
-         </Button>
-      </form>
+      <>
+         <CustomDashboardTitle>Update Profile</CustomDashboardTitle>
+
+         <form onSubmit={form.onSubmit(handleOnSubmit)}>
+            <TextInput
+               label="Address"
+               placeholder={address}
+               classNames={classes}
+               {...form.getInputProps("address")}
+            />
+            <TextInput
+               label="LinkedIn"
+               placeholder={"saifur rahman"}
+               classNames={classes}
+               {...form.getInputProps("linkedIn")}
+            />
+            <NumberInput
+               label="Phone Number"
+               placeholder={phone}
+               classNames={classes}
+               hideControls
+               {...form.getInputProps("phone")}
+            />
+            <Button type="submit" mt="md" variant="light">
+               Update
+            </Button>
+         </form>
+      </>
    );
 }

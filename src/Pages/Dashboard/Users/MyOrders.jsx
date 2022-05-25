@@ -20,11 +20,12 @@ const MyOrders = () => {
          <CustomDashboardTitle>My Orders : </CustomDashboardTitle>
          <ScrollArea>
             <Table
-               sx={{ minWidth: 800 }}
+               sx={{ minWidth: 600 }}
                verticalSpacing="xs"
                fontSize="xs"
                highlightOnHover
                striped
+               mb="lg"
             >
                <thead>
                   <tr>

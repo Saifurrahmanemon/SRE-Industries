@@ -1,7 +1,6 @@
 import { Anchor, Avatar, createStyles, Group, Text } from "@mantine/core";
 import React from "react";
 import { At, BrandLinkedin, Location, PhoneCall } from "tabler-icons-react";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 const useStyles = createStyles((theme) => ({
    icon: {
       color:
@@ -19,7 +18,6 @@ const Profile = ({ fixedInfo, userInfo }) => {
 
    return (
       <>
-         <CustomDashboardTitle>Update Profile</CustomDashboardTitle>
          <Group noWrap>
             <Avatar src={userInfo?.img} size={94} radius="md" />
             <div>

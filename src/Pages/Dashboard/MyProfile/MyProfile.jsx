@@ -16,6 +16,7 @@ const MyProfile = () => {
       "myProfile",
       async () => await axiosPrivate.get(`${API_URL}users/${user?.email}`)
    );
+
    if (isLoading) {
       return <Loading />;
    }
