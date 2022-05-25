@@ -15,9 +15,7 @@ export default function App() {
    const [colorScheme, setColorScheme] = useState("light");
 
    const toggleColorScheme = (value) =>
-      setColorScheme(
-         value || (colorScheme === "dark" ? "light" : "dark")
-      );
+      setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
    return (
       <QueryClientProvider client={queryClient}>
@@ -36,7 +34,6 @@ export default function App() {
             >
                <Navbar />
                <Router />
-               {/* <Footer /> */}
                <ToastContainer />
             </MantineProvider>
          </ColorSchemeProvider>

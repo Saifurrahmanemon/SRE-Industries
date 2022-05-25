@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import auth from "../../../firebase.init";
+import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import MyOrder from "./MyOrder";
 const MyOrders = () => {
    const [user] = useAuthState(auth);
@@ -16,7 +17,7 @@ const MyOrders = () => {
 
    return (
       <>
-         <h1>My orders</h1>
+         <CustomDashboardTitle>My Orders : </CustomDashboardTitle>
          <ScrollArea>
             <Table
                sx={{ minWidth: 800 }}
