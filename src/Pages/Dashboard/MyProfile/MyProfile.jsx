@@ -7,11 +7,12 @@ import auth from "../../../firebase.init";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";
 import Profile from "./Profile";
+import UpdateProfile from "./UpdateProfile";
 
 const MyProfile = () => {
    const [user] = useAuthState(auth);
 
-   const { data, isLoading } = useQuery(
+   const { data, isLoading, refetch } = useQuery(
       "myProfile",
       async () => await axiosPrivate.get(`${API_URL}users/${user?.email}`)
    );
@@ -22,7 +23,8 @@ const MyProfile = () => {
    return (
       <>
          <CustomDashboardTitle>My Profile</CustomDashboardTitle>
-         <Profile fixedInfo={user} userInfo={data.data}></Profile>
+         <Profile fixedInfo={user} userInfo={data.data} />
+         <UpdateProfile userInfo={data.data} refetch={refetch} />
       </>
    );
 };

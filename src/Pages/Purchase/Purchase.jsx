@@ -17,53 +17,47 @@ import UserDetails from "./UserDetails";
 const BASE_HEIGHT = 360;
 
 const Purchase = () => {
-    const [user] = useAuthState(auth);
-    const { purchaseId } = useParams();
+   const [user] = useAuthState(auth);
+   const { purchaseId } = useParams();
 
-    const name = user?.displayName;
-    const email = user?.email;
-    // this hook will return full info about product
-    const { product, isLoading } = useProductDetails(purchaseId);
+   const name = user?.displayName;
+   const email = user?.email;
+   // this hook will return full info about product
+   const { product, isLoading } = useProductDetails(purchaseId);
 
-    if (isLoading) {
-        return <Loading />;
-    }
-    const {
-        img,
-        name: productName,
-        minimumQuantity,
-        availableQuantity,
-        price,
-    } = product.data;
+   if (isLoading) {
+      return <Loading />;
+   }
+   const { img, name: productName } = product.data;
 
-    return (
-        <Container my="md">
-            <SimpleGrid cols={2} breakpoints={[{ maxWidth: "xs", cols: 1 }]}>
-                <Group direction="column">
-                    <ProductDetails product={product.data} />
-                    <UserDetails
-                        name={name}
-                        email={email}
-                        productId={purchaseId}
-                        product={product.data}
-                    />
-                </Group>
-                <Paper height={BASE_HEIGHT}>
-                    <Group>
-                        <Image
-                            src={img}
-                            alt={productName}
-                            style={{
-                                width: "100%",
-                                height: "auto",
-                                borderRadius: "md",
-                            }}
-                        />
-                    </Group>
-                </Paper>
-            </SimpleGrid>
-        </Container>
-    );
+   return (
+      <Container my="md">
+         <SimpleGrid cols={2} breakpoints={[{ maxWidth: "xs", cols: 1 }]}>
+            <Group direction="column">
+               <ProductDetails product={product.data} />
+               <UserDetails
+                  name={name}
+                  email={email}
+                  productId={purchaseId}
+                  product={product.data}
+               />
+            </Group>
+            <Paper height={BASE_HEIGHT}>
+               <Group>
+                  <Image
+                     src={img}
+                     alt={productName}
+                     style={{
+                        width: "100%",
+                        height: "auto",
+                        borderRadius: "md",
+                     }}
+                  />
+               </Group>
+            </Paper>
+         </SimpleGrid>
+      </Container>
+   );
 };
 
 export default Purchase;
