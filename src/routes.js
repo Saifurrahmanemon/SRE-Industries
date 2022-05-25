@@ -2,6 +2,7 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import { RequireAuth } from "./Pages";
 import Login from "./Pages/Auth/Login";
+import RequireAdmin from "./Pages/Auth/RequireAdmin";
 import SignUp from "./Pages/Auth/SignUp";
 import Blog from "./Pages/Blog/Blog";
 import AddProduct from "./Pages/Dashboard/Admin/AddProduct";
@@ -30,10 +31,38 @@ const Router = () => {
             { path: "myorders", element: <MyOrders /> },
             { path: "myprofile", element: <MyProfile /> },
             { path: "addreview", element: <AddReview /> },
-            { path: "manageallorders", element: <ManageAllOrders /> },
-            { path: "addproduct", element: <AddProduct /> },
-            { path: "manageproducts", element: <ManageProducts /> },
-            { path: "makeadmin", element: <MakeAdmin /> },
+            {
+               path: "manageallorders",
+               element: (
+                  <RequireAdmin>
+                     <ManageAllOrders />
+                  </RequireAdmin>
+               ),
+            },
+            {
+               path: "addproduct",
+               element: (
+                  <RequireAdmin>
+                     <AddProduct />
+                  </RequireAdmin>
+               ),
+            },
+            {
+               path: "manageproducts",
+               element: (
+                  <RequireAdmin>
+                     <ManageProducts />
+                  </RequireAdmin>
+               ),
+            },
+            {
+               path: "makeadmin",
+               element: (
+                  <RequireAdmin>
+                     <MakeAdmin />
+                  </RequireAdmin>
+               ),
+            },
          ],
       },
       {

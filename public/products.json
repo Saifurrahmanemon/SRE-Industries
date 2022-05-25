@@ -1,8 +1,7 @@
 [
     {
         "name": "Headrests cores",
-        "price": "300",
-        "quantity":8,
+        "price": 300,
         "minimumQuantity":2,
         "availableQuantity":200,
         "description": "Our headrests manufactured from Expanded Polypropylene can be combined with steel frames, fittings and comfort foams.",
@@ -10,8 +9,7 @@
     },
     {
         "name": "Plastic foam",
-        "price": "500",
-        "quantity":8,
+        "price": 500,
         "minimumQuantity":2,
         "availableQuantity":200,
         "description": "Plastic foams like expanded polypropylene (EPP) and expanded polystyrene (EPS) are lightweight and flexible materials widely used throughout the automotive market for their outstanding shock-absorbing performance.",
@@ -19,8 +17,7 @@
     },
     {
         "name": "Car cockpit",
-        "price": "700",
-        "quantity":8,
+        "price": 700,
         "minimumQuantity":20,
         "availableQuantity":112,
         "description": "Car cockpit parts like the EPP steering wheel column paddings and knee paddings are indispensable injury protection car elements in modern vehicles.",
@@ -28,8 +25,7 @@
     },
     {
         "name": "EPP car door pads",
-        "price": "400",
-        "quantity":8,
+        "price": 400,
         "minimumQuantity":22,
         "availableQuantity":232,
         "description": "Car door pads constructed from Expanded Polypropylene are typically used for lateral impact absorbtion.",
@@ -37,8 +33,7 @@
     },
     {
         "name": "EPP trunk compartment",
-        "price": "500",
-        "quantity":8,
+        "price": 500,
         "minimumQuantity":12,
         "availableQuantity":200,
         "description": "Expanded Polypropylene is the preferred material that our OEM and Tier 1 customers choose for in-boot tool and spare wheel accessory kits as well as battery covers and other car elements.",
@@ -46,8 +41,7 @@
     },
     {
         "name": "Baby car seats",
-        "price": "800",
-        "quantity":8,
+        "price": 800,
         "minimumQuantity":5,
         "availableQuantity":100,
         "description": "The EPP foam exceptional insulating properties ensure thermal comfort during transport of the child safety seat outside of the vehicle, and the light weight of EPP child seats' components and bases reduces its weight, substantially improving convenience of use.",

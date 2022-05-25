@@ -8,7 +8,7 @@ import Loading from "../../Shared/Loading";
 import ShowAdmin from "./components/ShowAdmin";
 
 const MakeAdmin = () => {
-   const { data, isLoading } = useQuery("getusers", async () =>
+   const { data, isLoading, refetch } = useQuery("getusers", async () =>
       axiosPrivate.get(`${API_URL}users`)
    );
 
@@ -32,12 +32,17 @@ const MakeAdmin = () => {
                      <th>Person</th>
                      <th>Email</th>
                      <th>Phone</th>
-                     <th>Make Admin</th>
+                     <th>Status</th>
                   </tr>
                </thead>
                <tbody>
                   {data.data.map((user, index) => (
-                     <ShowAdmin key={user._id} user={user} index={index} />
+                     <ShowAdmin
+                        key={user._id}
+                        refetch={refetch}
+                        user={user}
+                        index={index}
+                     />
                   ))}
                </tbody>
             </Table>

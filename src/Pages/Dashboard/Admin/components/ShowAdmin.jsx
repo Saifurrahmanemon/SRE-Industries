@@ -3,7 +3,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import axiosPrivate from "../../../../API/axiosPrivate";
 import { API_URL } from "../../../../API/rootURL";
-const ShowAdmin = ({ user: userInfo, index }) => {
+const ShowAdmin = ({ user: userInfo, index, refetch }) => {
    const { email, img, phone } = userInfo;
 
    const handleMakeAdmin = async (email) => {
@@ -18,6 +18,7 @@ const ShowAdmin = ({ user: userInfo, index }) => {
 
       if (res?.data?.modifiedCount > 0) {
          toast.success(`Yes!! Successfully made an admin `);
+         refetch();
       }
    };
 
