@@ -28,7 +28,7 @@ const mainLinks = [
    },
 
    {
-      link: "dashboard/myprofile",
+      link: "dashboard",
       label: "Dashboard",
    },
    {

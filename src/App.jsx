@@ -34,6 +34,7 @@ export default function App() {
             >
                <Navbar />
                <Router />
+
                <ToastContainer />
             </MantineProvider>
          </ColorSchemeProvider>

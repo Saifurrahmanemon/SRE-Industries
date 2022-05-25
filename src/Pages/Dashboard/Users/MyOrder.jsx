@@ -9,15 +9,17 @@ import {
    useMantineTheme,
 } from "@mantine/core";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Trash } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 const MyOrder = ({ order, index }) => {
    const theme = useMantineTheme();
-   const { img, productName, phone, quantity, price, _id } = order;
+   const { img, productName, phone, quantity, price, _id, productId } = order;
    const [opened, setOpened] = useState(false);
-   //    const [deleteItem, setDeleteItem] = useState(false);
+   const navigate = useNavigate();
+   console.log(productId);
 
    const handleDeleteItem = async (id) => {
       const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
@@ -77,7 +79,12 @@ const MyOrder = ({ order, index }) => {
                </Badge>
             </td>
             <td>
-               <Button variant="light" color="violet" compact>
+               <Button
+                  variant="light"
+                  color="violet"
+                  onClick={() => navigate(`/dashboard/payment/${productId}`)}
+                  compact
+               >
                   Pay
                </Button>
             </td>

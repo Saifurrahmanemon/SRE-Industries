@@ -13,6 +13,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import AddReview from "./Pages/Dashboard/Users/AddReview";
 import MyOrders from "./Pages/Dashboard/Users/MyOrders";
+import Payment from "./Pages/Dashboard/Users/Payment";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
@@ -29,7 +30,8 @@ const Router = () => {
          ),
          children: [
             { path: "myorders", element: <MyOrders /> },
-            { path: "myprofile", element: <MyProfile /> },
+            { path: "payment/:id", element: <Payment /> },
+            { index: true, element: <MyProfile /> },
             { path: "addreview", element: <AddReview /> },
             {
                path: "manageallorders",

@@ -1,18 +1,6 @@
 import { Anchor, createStyles } from "@mantine/core";
 import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import {
-   Ballpen,
-   BellRinging,
-   BuildingStore,
-   History,
-   Settings,
-   UserPlus,
-   Users,
-} from "tabler-icons-react";
-import auth from "../../../firebase.init";
-import useAdmin from "../../../Hooks/useAdmin";
 
 const useStyles = createStyles((theme, _params, getRef) => {
    const icon = getRef("icon");
@@ -93,44 +81,15 @@ const useStyles = createStyles((theme, _params, getRef) => {
    };
 });
 
-const userLinks = [
-   { link: "/dashboard/myorders", label: "My Orders", icon: BellRinging },
-   { link: "/dashboard/myprofile", label: "My Profile", icon: Users },
-   { link: "/dashboard/addreview", label: "Add Review", icon: Ballpen },
-   { link: "", label: "History", icon: History },
-   { link: "", label: "Other Settings", icon: Settings },
-];
-const adminLinks = [
-   { link: "/dashboard/makeadmin", label: "Make Admin", icon: UserPlus },
-   {
-      link: "/dashboard/manageproducts",
-      label: "Manage Products",
-      icon: BuildingStore,
-   },
-   { link: "/dashboard/addproduct", label: "Add Product", icon: Ballpen },
-   {
-      link: "/dashboard/manageallorders",
-      label: "Manage All Orders",
-      icon: History,
-   },
-   { link: "/dashboard/myprofile", label: "My Profile", icon: Users },
-];
-
 //* change navigation links in the dashboard based on the user's role
-let showLinks = userLinks;
-export function MainLinks() {
+
+export function MainLinks({ links }) {
    const { classes, cx } = useStyles();
    const [active, setActive] = useState("Databases");
-   const [user] = useAuthState(auth);
-   const [admin] = useAdmin(user);
-
-   if (admin) {
-      showLinks = adminLinks;
-   }
 
    return (
       <>
-         {showLinks.map((item, index) => {
+         {links.map((item, index) => {
             return (
                <Anchor
                   className={cx(classes.link, {
