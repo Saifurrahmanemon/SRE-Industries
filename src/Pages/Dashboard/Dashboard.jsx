@@ -3,7 +3,7 @@ import {
    Burger,
    MediaQuery,
    Navbar,
-   useMantineTheme,
+   useMantineTheme
 } from "@mantine/core";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
