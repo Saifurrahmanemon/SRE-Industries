@@ -17,7 +17,7 @@ const ManageProduct = ({ product, index, refetch }) => {
    const theme = useMantineTheme();
 
    const [opened, setOpened] = useState(false);
-   //    const [deleteItem, setDeleteItem] = useState(false);
+   
 
    const handleDeleteItem = async (id) => {
       const { data } = await axiosPrivate.delete(`${API_URL}parts/${id}`);

@@ -9,7 +9,7 @@ const ManageProducts = () => {
    const { products, isLoading, refetch } = useParts();
 
    if (isLoading) return <Loading />;
-   console.log(products);
+
    return (
       <>
          <CustomDashboardTitle>manage product</CustomDashboardTitle>

@@ -21,7 +21,6 @@ const ManageAllOrders = () => {
       return <Loading />;
    }
 
-   console.log(orders);
    return (
       <>
          <CustomDashboardTitle>manage all orders</CustomDashboardTitle>

@@ -41,7 +41,7 @@ export default function AddInventory() {
       [form]
    );
    const onReject = (files) => {
-      console.log(files);
+      toast.error("File must be an image");
    };
    const handleOnSubmit = async (values) => {
       const { data } = await axiosPrivate.post(`${API_URL}parts`, values);
