@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import { RequireAuth } from "./Pages";
 import Login from "./Pages/Auth/Login";
 import RequireAdmin from "./Pages/Auth/RequireAdmin";
+import RequireUser from "./Pages/Auth/RequireUser";
 import SignUp from "./Pages/Auth/SignUp";
 import Blog from "./Pages/Blog/Blog";
 import AddProduct from "./Pages/Dashboard/Admin/AddProduct";
@@ -29,10 +30,31 @@ const Router = () => {
             </RequireAuth>
          ),
          children: [
-            { path: "myorders", element: <MyOrders /> },
-            { path: "payment/:id", element: <Payment /> },
+            {
+               path: "myorders",
+               element: (
+                  <RequireUser>
+                     <MyOrders />
+                  </RequireUser>
+               ),
+            },
+            {
+               path: "payment/:id",
+               element: (
+                  <RequireUser>
+                     <Payment />
+                  </RequireUser>
+               ),
+            },
             { index: true, element: <MyProfile /> },
-            { path: "addreview", element: <AddReview /> },
+            {
+               path: "addreview",
+               element: (
+                  <RequireUser>
+                     <AddReview />
+                  </RequireUser>
+               ),
+            },
             {
                path: "manageallorders",
                element: (

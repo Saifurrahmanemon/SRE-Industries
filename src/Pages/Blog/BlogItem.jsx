@@ -42,7 +42,7 @@ function BlogItem({ title, description }) {
    const { classes } = useStyles();
    const theme = useMantineTheme();
    return (
-      <Paper my={40} mx="xl" withBorder radius="md" className={classes.card}>
+      <Paper my={40} mx={70} withBorder radius="md" className={classes.card}>
          <ThemeIcon
             size="xl"
             radius="md"
@@ -55,10 +55,10 @@ function BlogItem({ title, description }) {
          >
             <ColorSwatch size={28} />
          </ThemeIcon>
-         <Text size="xl" weight={500} mt="md">
+         <Text size="lg" weight={500} mt="md">
             {title}
          </Text>
-         <Text size="sm" mt="sm" color="dimmed">
+         <Text size="md" mt="sm" color="dimmed">
             {description}
          </Text>
       </Paper>

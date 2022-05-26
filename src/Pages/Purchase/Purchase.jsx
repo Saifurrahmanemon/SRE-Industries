@@ -33,28 +33,27 @@ const Purchase = () => {
    return (
       <Container my="md">
          <SimpleGrid cols={2} breakpoints={[{ maxWidth: "xs", cols: 1 }]}>
-            <Group direction="column">
-               <ProductDetails product={product.data} />
+            <Paper height={BASE_HEIGHT}>
                <UserDetails
                   name={name}
                   email={email}
                   productId={purchaseId}
                   product={product.data}
                />
-            </Group>
-            <Paper height={BASE_HEIGHT}>
+            </Paper>
+            <Group direction="column">
                <Group>
                   <Image
                      src={img}
                      alt={productName}
+                     width={200}
                      style={{
-                        width: "100%",
-                        height: "auto",
                         borderRadius: "md",
                      }}
                   />
                </Group>
-            </Paper>
+               <ProductDetails product={product.data} />
+            </Group>
          </SimpleGrid>
       </Container>
    );

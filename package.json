@@ -8,6 +8,7 @@
     "@mantine/dropzone": "^4.2.6",
     "@mantine/form": "^4.2.5",
     "@mantine/hooks": "^4.2.6",
+    "@mantine/prism": "^4.2.6",
     "@stripe/react-stripe-js": "^1.8.0",
     "@stripe/stripe-js": "^1.29.0",
     "@testing-library/jest-dom": "^5.16.4",

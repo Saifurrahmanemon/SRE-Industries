@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import ReactStars from "react-rating-stars-component";
+import { toast } from "react-toastify";
 import { Star, StarHalf } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
@@ -34,7 +35,7 @@ export const useStyles = createStyles((theme) => ({
 }));
 
 const AddReview = () => {
-   const { register, handleSubmit } = useForm();
+   const { register, handleSubmit, reset } = useForm();
    const [user] = useAuthState(auth);
 
    const [ratings, setRatings] = useState(0);
@@ -49,7 +50,10 @@ const AddReview = () => {
          email: user?.email,
       };
       const { data } = await axiosPrivate.post(`${API_URL}reviews`, review);
-      console.log(data);
+      if (data.insertedId) {
+         toast.success("Review added successfully");
+         reset();
+      }
    };
    return (
       <>
