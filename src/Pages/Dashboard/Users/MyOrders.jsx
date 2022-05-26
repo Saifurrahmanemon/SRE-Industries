@@ -1,19 +1,29 @@
 import { ScrollArea, Table } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import auth from "../../../firebase.init";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
+import Loading from "../../Shared/Loading";
 import MyOrder from "./MyOrder";
 const MyOrders = () => {
    const [user] = useAuthState(auth);
-   const [orders, setOrders] = useState([]);
-   useEffect(() => {
-      axiosPrivate
-         .get(`${API_URL}orders/${user?.email}`)
-         .then(({ data }) => setOrders(data));
-   }, [user?.email, orders]);
+   const email = user?.email;
+
+   const {
+      data: orders,
+      isLoading,
+      refetch,
+   } = useQuery(
+      ["orders", email],
+      async () => await axiosPrivate.get(`${API_URL}orders/${email}`)
+   );
+
+   if (isLoading) {
+      return <Loading />;
+   }
 
    return (
       <>
@@ -39,10 +49,11 @@ const MyOrders = () => {
                   </tr>
                </thead>
                <tbody>
-                  {orders.map((order, index) => (
+                  {orders?.data.map((order, index) => (
                      <MyOrder
                         order={order}
                         index={index}
+                        refetch={refetch}
                         key={order._id}
                      ></MyOrder>
                   ))}

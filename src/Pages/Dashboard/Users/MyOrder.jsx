@@ -4,8 +4,10 @@ import {
    Badge,
    Button,
    Group,
+   Indicator,
    Modal,
    Text,
+   Tooltip,
    useMantineTheme,
 } from "@mantine/core";
 import React, { useState } from "react";
@@ -14,17 +16,19 @@ import { toast } from "react-toastify";
 import { Trash } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
-const MyOrder = ({ order, index }) => {
+const MyOrder = ({ order, index, refetch }) => {
    const theme = useMantineTheme();
-   const { img, productName, phone, quantity, price, _id, productId } = order;
+   const { img, productName, phone, quantity, price, _id } = order;
    const [opened, setOpened] = useState(false);
    const navigate = useNavigate();
-   console.log(productId);
+
+   //    const [deleteItem, setDeleteItem] = useState(false);
 
    const handleDeleteItem = async (id) => {
       const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
       if (data.deletedCount) {
          toast.success("Order removed Successfully");
+         refetch();
       }
    };
    return (
@@ -79,15 +83,30 @@ const MyOrder = ({ order, index }) => {
                </Badge>
             </td>
             <td>
-               <Button
-                  variant="light"
-                  color="violet"
-                  onClick={() => navigate(`/dashboard/payment/${productId}`)}
-                  compact
-               >
-                  Pay
-               </Button>
+               {!order?.paid ? (
+                  <Button
+                     variant="light"
+                     color="violet"
+                     compact="true"
+                     onClick={() => navigate(`/dashboard/payment/${_id}`)}
+                  >
+                     Pay
+                  </Button>
+               ) : (
+                  <>
+                     <Tooltip
+                        label={`Transaction ID:  ${order?.transactionId}`}
+                        withArrow
+                     >
+                        {" "}
+                        <Indicator size={10} withBorder>
+                           <Badge>Paid</Badge>
+                        </Indicator>
+                     </Tooltip>
+                  </>
+               )}
             </td>
+
             <td>
                <Text size="md" weight={700} color="gray">
                   {quantity}
@@ -100,8 +119,12 @@ const MyOrder = ({ order, index }) => {
             </td>
             <td>
                <Group spacing={0} position="right">
-                  <ActionIcon color="red" onClick={() => setOpened(true)}>
-                     <Trash size={18} color="orange" />
+                  <ActionIcon
+                     disabled={order?.paid}
+                     color="red"
+                     onClick={() => setOpened(true)}
+                  >
+                     <Trash size={18} color={order?.paid ? "gray" : "orange"} />
                   </ActionIcon>
                </Group>
             </td>
