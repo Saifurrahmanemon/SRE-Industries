@@ -92,7 +92,7 @@ export default function AddInventory() {
                   my={20}
                   max={100}
                   min={0}
-                  label="minimum Quantity"
+                  label="Minimum Quantity"
                   required
                   {...form.getInputProps("minimumQuantity")}
                />

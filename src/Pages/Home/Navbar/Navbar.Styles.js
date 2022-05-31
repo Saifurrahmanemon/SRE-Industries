@@ -18,6 +18,8 @@ export const useStyles = createStyles((theme) => ({
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
       borderTopWidth: 0,
+      display: "flex",
+      justifyContent: "space-evenly",
       overflow: "hidden",
       [theme.fn.largerThan("sm")]: {
          display: "none",
@@ -26,6 +28,15 @@ export const useStyles = createStyles((theme) => ({
 
    burger: {
       [theme.fn.largerThan("sm")]: {
+         display: "none",
+      },
+   },
+
+   authText: {
+      fontSize: theme.spacing.sm * 1.2,
+      margin: 0,
+      marginBottom: 2,
+      [theme.fn.smallerThan("400")]: {
          display: "none",
       },
    },
@@ -48,6 +59,7 @@ export const useStyles = createStyles((theme) => ({
    mainLink: {
       textTransform: "uppercase",
       fontSize: 13,
+
       color:
          theme.colorScheme === "dark"
             ? theme.colors.dark[1]
@@ -61,6 +73,9 @@ export const useStyles = createStyles((theme) => ({
       "&:hover": {
          color: theme.colorScheme === "dark" ? theme.white : theme.black,
          textDecoration: "none",
+      },
+      [theme.fn.smallerThan("sm")]: {
+         borderBottom: "none",
       },
    },
 

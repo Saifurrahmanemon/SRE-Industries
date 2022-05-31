@@ -11,13 +11,13 @@ import { toast } from "react-toastify";
 import { Trash } from "tabler-icons-react";
 import axiosPrivate from "../../../../API/axiosPrivate";
 import { API_URL } from "../../../../API/rootURL";
+
 const ManageProduct = ({ product, index, refetch }) => {
    const { _id, name, price, availableQuantity } = product;
 
    const theme = useMantineTheme();
 
    const [opened, setOpened] = useState(false);
-   
 
    const handleDeleteItem = async (id) => {
       const { data } = await axiosPrivate.delete(`${API_URL}parts/${id}`);
@@ -43,6 +43,7 @@ const ManageProduct = ({ product, index, refetch }) => {
                   color="red"
                   onClick={() => {
                      handleDeleteItem(_id);
+                     setOpened(false);
                   }}
                >
                   Delete

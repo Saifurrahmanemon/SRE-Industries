@@ -26,7 +26,7 @@ const Reviews = () => {
                }}
                my="md"
             >
-               {reviews.data.map((review, index) => (
+               {reviews?.data.map((review, index) => (
                   <Review review={review} key={index}></Review>
                ))}
             </Box>

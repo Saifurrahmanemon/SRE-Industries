@@ -6,6 +6,7 @@ import {
    Group,
    Header,
    Paper,
+   Text,
    Title,
    Transition,
 } from "@mantine/core";
@@ -70,6 +71,7 @@ export default function Navbar() {
          })}
          onClick={(event) => {
             setActive(index);
+            toggleOpened(false);
          }}
       >
          {item.label}
@@ -91,14 +93,14 @@ export default function Navbar() {
                      color="red"
                      onClick={handleSignOut}
                   >
-                     Sign out
+                     <Text className={classes.authText}>Sign out</Text>
                   </CustomSignInOutButton>
                ) : (
                   <CustomSignInOutButton
                      leftIcon={<Login />}
                      onClick={handleSignIn}
                   >
-                     Sign in
+                     <Text className={classes.authText}>Sign in</Text>
                   </CustomSignInOutButton>
                )}
             </Group>

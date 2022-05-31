@@ -21,6 +21,7 @@ const useStyles = createStyles((theme) => ({
       paddingLeft: 54,
       paddingTop: theme.spacing.sm,
       fontSize: theme.fontSizes.sm,
+      overflow: "hidden",
    },
 }));
 
