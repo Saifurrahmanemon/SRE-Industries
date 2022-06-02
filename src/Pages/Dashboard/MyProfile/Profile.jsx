@@ -15,6 +15,7 @@ const useStyles = createStyles((theme) => ({
 }));
 const Profile = ({ fixedInfo, userInfo }) => {
    const { classes } = useStyles();
+   
 
    return (
       <>

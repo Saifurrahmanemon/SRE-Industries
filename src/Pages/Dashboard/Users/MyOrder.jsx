@@ -18,7 +18,7 @@ import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 const MyOrder = ({ order, index, refetch }) => {
    const theme = useMantineTheme();
-   const { img, productName, phone, quantity, price, _id } = order;
+   const { img, productName, phone, quantity, total, _id } = order;
    const [opened, setOpened] = useState(false);
    const navigate = useNavigate();
 
@@ -108,13 +108,13 @@ const MyOrder = ({ order, index, refetch }) => {
             </td>
 
             <td>
-               <Text size="md" weight={700} color="gray">
+               <Text size="sm" weight={700} color="gray">
                   {quantity}
                </Text>
             </td>
             <td>
                <Text size="sm" weight={500} color="gray">
-                  ${price}
+                  $ {total}
                </Text>
             </td>
             <td>

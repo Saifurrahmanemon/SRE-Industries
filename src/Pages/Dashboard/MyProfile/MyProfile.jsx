@@ -24,8 +24,8 @@ const MyProfile = () => {
    return (
       <>
          <CustomDashboardTitle>My Profile</CustomDashboardTitle>
-         <Profile fixedInfo={user} userInfo={data.data} />
-         <UpdateProfile userInfo={data.data} refetch={refetch} />
+         <Profile fixedInfo={user} userInfo={data?.data} />
+         <UpdateProfile userInfo={data?.data} refetch={refetch} />
       </>
    );
 };

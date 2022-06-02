@@ -1,10 +1,18 @@
-import { Container, Group, Image, Paper, SimpleGrid } from "@mantine/core";
+import {
+   Container,
+   Grid,
+   Paper,
+   SimpleGrid,
+   Skeleton,
+   useMantineTheme,
+} from "@mantine/core";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import auth from "../../firebase.init";
 import useProductDetails from "../../Hooks/useProductDetails";
 import Loading from "../Shared/Loading";
+import OrderSummary from "./OrderSummary";
 import ProductDetails from "./ProductDetails";
 import UserDetails from "./UserDetails";
 /*
@@ -14,46 +22,54 @@ import UserDetails from "./UserDetails";
  * You will display an error and disable the purchase button in both cases.
  */
 
-const BASE_HEIGHT = 360;
+const PRIMARY_COL_HEIGHT = 300;
 
 const Purchase = () => {
    const [user] = useAuthState(auth);
    const { purchaseId } = useParams();
+   const theme = useMantineTheme();
 
    const name = user?.displayName;
    const email = user?.email;
    // this hook will return full info about product
    const { product, isLoading } = useProductDetails(purchaseId);
 
+   const SECONDARY_COL_HEIGHT = PRIMARY_COL_HEIGHT / 2 - theme.spacing.md / 2;
+
    if (isLoading) {
       return <Loading />;
    }
-   const { img, name: productName } = product.data;
 
    return (
       <Container my="md">
-         <SimpleGrid cols={2} breakpoints={[{ maxWidth: "xs", cols: 1 }]}>
-            <Paper height={BASE_HEIGHT}>
-               <UserDetails
-                  name={name}
-                  email={email}
-                  productId={purchaseId}
-                  product={product.data}
-               />
-            </Paper>
-            <Group direction="column">
-               <Group>
-                  <Image
-                     src={img}
-                     alt={productName}
-                     width={200}
-                     style={{
-                        borderRadius: "md",
-                     }}
+         <SimpleGrid
+            cols={2}
+            spacing="md"
+            breakpoints={[{ maxWidth: "sm", cols: 1 }]}
+         >
+            <Grid gutter="md">
+               <Grid.Col>
+                  <ProductDetails product={product?.data} />
+               </Grid.Col>
+               <Grid.Col span={6}>
+                  <Paper height={SECONDARY_COL_HEIGHT}>
+                     <OrderSummary product={product?.data} />
+                  </Paper>
+               </Grid.Col>
+               <Grid.Col span={6}>
+                  <Skeleton
+                     height={SECONDARY_COL_HEIGHT}
+                     radius="md"
+                     animate={false}
                   />
-               </Group>
-               <ProductDetails product={product.data} />
-            </Group>
+               </Grid.Col>
+            </Grid>
+            <UserDetails
+               name={name}
+               email={email}
+               productId={purchaseId}
+               product={product.data}
+            />
          </SimpleGrid>
       </Container>
    );

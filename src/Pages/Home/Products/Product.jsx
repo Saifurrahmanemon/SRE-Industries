@@ -1,5 +1,4 @@
 import {
-   ActionIcon,
    Badge,
    Button,
    Card,
@@ -12,7 +11,8 @@ import {
 } from "@mantine/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Heart, ShoppingCart } from "tabler-icons-react";
+import { ShoppingCart } from "tabler-icons-react";
+import Wishlist from "../../Components/Wishlist";
 
 const useStyles = createStyles((theme) => ({
    card: {
@@ -122,9 +122,7 @@ export default function Product({ product }) {
                   >
                      Purchase
                   </Button>
-                  <ActionIcon variant="hover">
-                     <Heart size={22} color={theme.colors.red[6]} />
-                  </ActionIcon>
+                  <Wishlist />
                </Group>
             </div>
          </Group>

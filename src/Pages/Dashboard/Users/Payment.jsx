@@ -67,7 +67,7 @@ const Payment = () => {
                </Text>
                <Text className={classes.text}>
                   You have to pay:
-                  <span className={classes.span}> ${product?.data.price}</span>
+                  <span className={classes.span}> ${product?.data?.total}</span>
                </Text>
 
                <Text size="xl" className={classes.text}>
@@ -76,15 +76,15 @@ const Payment = () => {
                </Text>
                <Text className={classes.text}>
                   Phone :{" "}
-                  <span className={classes.span}> {product?.data.phone}</span>
+                  <span className={classes.span}> {product?.data?.phone}</span>
                </Text>
                <Text className={classes.text}>
                   Email :{" "}
-                  <span className={classes.span}> {product?.data.email}</span>
+                  <span className={classes.span}> {product?.data?.email}</span>
                </Text>
                <Text className={classes.text}>
                   Shipping Address :{" "}
-                  <span className={classes.span}> {product?.data.address}</span>
+                  <span className={classes.span}> {product?.data?.address}</span>
                </Text>
 
                <Box my="xl">

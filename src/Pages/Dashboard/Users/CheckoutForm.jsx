@@ -17,17 +17,17 @@ const CheckoutForm = ({ product }) => {
    const [opened, setOpened] = useState(true);
    const navigate = useNavigate();
 
-   const { price, email, name, _id } = product;
+   const { total, email, name, _id } = product;
 
    useEffect(() => {
       axiosPrivate
-         .post(`${API_URL}create-payment-intent`, { price })
+         .post(`${API_URL}create-payment-intent`, { total })
          .then((res) => {
             if (res?.data?.clientSecret) {
                setClientSecret(res?.data?.clientSecret);
             }
          });
-   }, [price]);
+   }, [total]);
    const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();

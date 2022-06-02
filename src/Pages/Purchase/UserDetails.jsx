@@ -1,17 +1,23 @@
 import {
    ActionIcon,
+   Avatar,
    Button,
    Group,
    NumberInput,
    Paper,
+   Text,
    TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
-import { Minus, Plus } from "tabler-icons-react";
+import { Mail, Minus, Plus } from "tabler-icons-react";
 import axiosPrivate from "../../API/axiosPrivate";
 import { API_URL } from "../../API/rootURL";
+import auth from "../../firebase.init";
+import Wishlist from "../Components/Wishlist";
+import { useStore } from "../Shared/store";
 import { useStyles } from "./UserDetails.styles";
 const UserDetails = ({ email, name, productId, product }) => {
    const {
@@ -21,30 +27,32 @@ const UserDetails = ({ email, name, productId, product }) => {
       availableQuantity: max,
       name: productName,
    } = product;
-   const [value, setValue] = useState(min + 1);
    const { classes } = useStyles();
+   const [user] = useAuthState(auth);
 
+   const {
+      quantity,
+      setQuantity,
+
+      decreaseQuantity,
+      increaseQuantity,
+      shipping,
+      promotion,
+   } = useStore();
    useEffect(() => {
-      if (value <= min) {
-         toast.error("Can not order below minimum quantity ");
-      }
-
-      if (value >= max) {
-         toast.error("Can not order over available quantity");
-      }
-   }, [max, min, value]);
+      setQuantity(min);
+   }, [min, setQuantity]);
 
    const form = useForm({
       initialValues: {
          email: email,
          name: name,
-         quantity: min,
          address: "",
          phone: Number,
       },
    });
 
-   const handleOnSubmit = async ({ email, address, phone, quantity }) => {
+   const handleOnSubmit = async ({ email, address, phone }) => {
       const productDetails = {
          productName: productName,
          img: img,
@@ -53,9 +61,10 @@ const UserDetails = ({ email, name, productId, product }) => {
          address,
          phone,
          quantity,
-         price: quantity * price,
+         total: quantity * price + shipping + promotion,
          name,
       };
+      console.log(productDetails);
 
       const { data } = await axiosPrivate.post(
          `${API_URL}orders`,
@@ -73,8 +82,18 @@ const UserDetails = ({ email, name, productId, product }) => {
 
    return (
       <>
-         {" "}
-         <Paper shadow="xl" withBorder radius="lg" p="lg">
+         <Paper p="lg">
+            <Group spacing="xs" ml={25}>
+               <Avatar src={user?.photoURL} />
+               <Group direction="column" spacing="xs">
+                  <Text color="gray" weight={700} size="sm" mb={-5}>
+                     {name}
+                  </Text>
+                  <Text color="dimmed" weight={600} size="sm" mt={-5}>
+                     New Member
+                  </Text>
+               </Group>
+            </Group>
             <Group>
                <Group direction="column">
                   <form
@@ -82,30 +101,21 @@ const UserDetails = ({ email, name, productId, product }) => {
                      className={classes.form}
                   >
                      <TextInput
-                        label="Email"
                         placeholder={email}
+                        icon={<Mail size={19} />}
                         disabled
                         required
-                        classNames={{
-                           input: classes.input,
-                           label: classes.inputLabel,
-                        }}
                      />
-                     <TextInput
-                        label="Name"
-                        placeholder={name}
-                        disabled
-                        mt="md"
-                        classNames={{
-                           input: classes.input,
-                           label: classes.inputLabel,
-                        }}
-                     />
+
                      <NumberInput
                         placeholder="+88"
                         label="Phone Number"
                         hideControls
                         required
+                        classNames={{
+                           input: classes.input,
+                           label: classes.inputLabel,
+                        }}
                         mt="md"
                         {...form.getInputProps("phone")}
                      />
@@ -124,8 +134,8 @@ const UserDetails = ({ email, name, productId, product }) => {
                         <ActionIcon
                            size={28}
                            variant="transparent"
-                           onClick={() => setValue((prev) => prev - 1)}
-                           disabled={value === min}
+                           onClick={decreaseQuantity}
+                           disabled={quantity === min}
                            className={classes.quantityControl}
                            onMouseDown={(event) => event.preventDefault()}
                         >
@@ -136,13 +146,7 @@ const UserDetails = ({ email, name, productId, product }) => {
                            variant="unstyled"
                            min={min}
                            max={max}
-                           value={value}
-                           onChange={(event) =>
-                              form.setFieldValue(
-                                 "quantity",
-                                 event.currentTarget.value
-                              )
-                           }
+                           value={quantity}
                            classNames={{
                               input: classes.quantityInput,
                            }}
@@ -151,8 +155,8 @@ const UserDetails = ({ email, name, productId, product }) => {
                         <ActionIcon
                            size={28}
                            variant="transparent"
-                           onClick={() => setValue((prev) => prev + 1)}
-                           disabled={value === max}
+                           onClick={increaseQuantity}
+                           disabled={quantity >= max}
                            className={classes.quantityControl}
                            onMouseDown={(event) => event.preventDefault()}
                         >
@@ -162,8 +166,9 @@ const UserDetails = ({ email, name, productId, product }) => {
 
                      <Group position="left" variant="light" mt="md">
                         <Button variant="light" type="submit">
-                           Purchase
+                           Place Order
                         </Button>
+                        <Wishlist />
                      </Group>
                   </form>
                </Group>
