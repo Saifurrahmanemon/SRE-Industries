@@ -8,14 +8,13 @@ import {
    Title,
 } from "@mantine/core";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Check } from "tabler-icons-react";
 import car from "../../../Assets/svg/car.svg";
 import { useStyles } from "./Banner.styles";
 
 export default function Banner() {
    const { classes } = useStyles();
-   const navigate = useNavigate();
+
    return (
       <div>
          <div className={classes.inner}>

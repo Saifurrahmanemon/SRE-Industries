@@ -7,7 +7,6 @@ import {
    Group,
    Image,
    Text,
-   useMantineTheme,
 } from "@mantine/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +50,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Product({ product }) {
-   const theme = useMantineTheme();
    const navigate = useNavigate();
    const {
       img,

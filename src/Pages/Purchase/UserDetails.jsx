@@ -64,7 +64,6 @@ const UserDetails = ({ email, name, productId, product }) => {
          total: quantity * price + shipping + promotion,
          name,
       };
-      console.log(productDetails);
 
       const { data } = await axiosPrivate.post(
          `${API_URL}orders`,
@@ -83,13 +82,25 @@ const UserDetails = ({ email, name, productId, product }) => {
    return (
       <>
          <Paper p="lg">
-            <Group spacing="xs" ml={25}>
+            <Group className={classes.responsiveText} spacing="xs" ml={25}>
                <Avatar src={user?.photoURL} />
                <Group direction="column" spacing="xs">
-                  <Text color="gray" weight={700} size="sm" mb={-5}>
+                  <Text
+                     className={classes.responsiveText}
+                     color="gray"
+                     weight={700}
+                     size="sm"
+                     mb={-5}
+                  >
                      {name}
                   </Text>
-                  <Text color="dimmed" weight={600} size="sm" mt={-5}>
+                  <Text
+                     className={classes.responsiveText}
+                     color="dimmed"
+                     weight={600}
+                     size="sm"
+                     mt={-5}
+                  >
                      New Member
                   </Text>
                </Group>
@@ -105,6 +116,10 @@ const UserDetails = ({ email, name, productId, product }) => {
                         icon={<Mail size={19} />}
                         disabled
                         required
+                        classNames={{
+                           input: classes.input,
+                           label: classes.inputLabel,
+                        }}
                      />
 
                      <NumberInput
@@ -165,7 +180,11 @@ const UserDetails = ({ email, name, productId, product }) => {
                      </div>
 
                      <Group position="left" variant="light" mt="md">
-                        <Button variant="light" type="submit">
+                        <Button
+                           className={classes.button}
+                           variant="light"
+                           type="submit"
+                        >
                            Place Order
                         </Button>
                         <Wishlist />

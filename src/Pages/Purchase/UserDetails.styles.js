@@ -20,6 +20,12 @@ export const useStyles = createStyles((theme) => ({
       color: theme.white,
       lineHeight: 1,
    },
+   responsiveText: {
+      fontSize: 14,
+      [theme.fn.smallerThan("sm")]: {
+         fontSize: 12,
+      },
+   },
 
    description: {
       color: theme.colors[theme.primaryColor][0],
@@ -60,7 +66,11 @@ export const useStyles = createStyles((theme) => ({
    },
 
    inputLabel: {
-      color: theme.black,
+      color: theme.colorScheme === "dark" ? theme.white : theme.colors.dark[5],
+      fontSize: 14,
+      [theme.fn.smallerThan("sm")]: {
+         fontSize: 12,
+      },
    },
 
    control: {
@@ -82,6 +92,9 @@ export const useStyles = createStyles((theme) => ({
 
       "&:focus-within": {
          borderColor: theme.colors[theme.primaryColor][6],
+      },
+      [theme.fn.smallerThan("sm")]: {
+         width: 120,
       },
    },
 
@@ -106,5 +119,15 @@ export const useStyles = createStyles((theme) => ({
       paddingLeft: `${theme.spacing.sm}px !important`,
       height: 28,
       flex: 1,
+   },
+
+   button: {
+      borderRadius: theme.radius.sm,
+      padding: `${theme.spacing.sm}px ${theme.spacing.md}px`,
+      fontSize: 14,
+      [theme.fn.smallerThan("sm")]: {
+         fontSize: 10,
+         padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+      },
    },
 }));
