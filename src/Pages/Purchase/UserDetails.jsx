@@ -123,7 +123,7 @@ const UserDetails = ({ email, name, productId, product }) => {
                      />
 
                      <NumberInput
-                        placeholder="+88"
+                        placeholder="88"
                         label="Phone Number"
                         hideControls
                         required

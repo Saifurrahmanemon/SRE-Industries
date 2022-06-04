@@ -1,6 +1,7 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import { RequireAuth } from "./Pages";
+import ForgotPassword from "./Pages/Auth/ForgotPassword";
 import Login from "./Pages/Auth/Login";
 import RequireAdmin from "./Pages/Auth/RequireAdmin";
 import RequireUser from "./Pages/Auth/RequireUser";
@@ -93,6 +94,7 @@ const Router = () => {
          path: "/",
          element: <Home />,
       },
+      { path: "forgotPassword", element: <ForgotPassword /> },
       { path: "login", element: <Login /> },
       { path: "signUp", element: <SignUp /> },
       {

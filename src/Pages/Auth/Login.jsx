@@ -9,12 +9,12 @@ import {
    PasswordInput,
    Text,
    TextInput,
-   Title,
+   Title
 } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import React, { useEffect } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Lock, Mail } from "tabler-icons-react";
 import auth from "../../firebase.init";
@@ -141,7 +141,12 @@ export default function Login() {
                   />
                   <Group position="apart" mt="md">
                      <Checkbox label="Remember me" />
-                     <Anchor color="grey" href="#" size="sm">
+                     <Anchor
+                        component={Link}
+                        color="grey"
+                        to={"/forgotpassword"}
+                        size="sm"
+                     >
                         Forgot password?
                      </Anchor>
                   </Group>

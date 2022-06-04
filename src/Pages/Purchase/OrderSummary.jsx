@@ -1,5 +1,8 @@
 import { Button, createStyles, Group, Text, TextInput } from "@mantine/core";
+import { useForm } from "@mantine/hooks";
+import { toast } from "react-toastify";
 import { useStore } from "../Shared/store";
+
 const useStyles = createStyles((theme) => ({
    text: {
       fontSize: 15,
@@ -26,10 +29,26 @@ const OrderSummary = ({ product }) => {
    const { price } = product;
    const { quantity, shipping, promotion } = useStore();
 
+   const form = useForm({
+      initialValues: {
+         voucher: "",
+      },
+   });
+
    // calculation
    let subTotal = price * quantity;
 
    let total = subTotal + shipping + promotion;
+
+   const handleVoucher = ({ voucher }) => {
+      const configVoucher = process.env.REACT_APP_VOUCHER;
+
+      voucher === configVoucher
+         ? toast.success("voucher applied")
+         : toast.error("voucher did not matched");
+
+      form.reset();
+   };
 
    const { classes } = useStyles();
    return (
@@ -61,9 +80,25 @@ const OrderSummary = ({ product }) => {
                ${shipping}
             </Text>
          </Group>
-         <form action="" className={classes.form}>
-            <TextInput placeholder="Enter voucher code" size="xs"></TextInput>
-            <Button className={classes.button} variant="light" compact mx="xs">
+         <form
+            action=""
+            onSubmit={form.onSubmit(handleVoucher)}
+            className={classes.form}
+         >
+            <TextInput
+               placeholder="Enter voucher code"
+               size="xs"
+               onChange={(event) =>
+                  form.setFieldValue("voucher", event.currentTarget.value)
+               }
+            ></TextInput>
+            <Button
+               type="submit"
+               className={classes.button}
+               variant="light"
+               compact
+               mx="xs"
+            >
                Apply
             </Button>
          </form>
