@@ -1,4 +1,5 @@
 import {
+   ActionIcon,
    Anchor,
    Avatar,
    Button,
@@ -9,6 +10,7 @@ import {
 } from "@mantine/core";
 import { Prism } from "@mantine/prism";
 import React from "react";
+import { BrandGithub, BrandLinkedin } from "tabler-icons-react";
 
 const code = `class Emon:
 
@@ -32,6 +34,7 @@ def __str__(self):
 
 if __name__ == '__main__':
 me = Emon()`;
+
 export default function Portfolio() {
    return (
       <Paper
@@ -54,38 +57,33 @@ export default function Portfolio() {
          </Text>
 
          <Center>
-            <Button variant="default" mt="md">
-               Send message
+            <Button
+               component={Anchor}
+               target="_blank"
+               href="https://drive.google.com/file/d/1u5ft8SnmEGLDXDtVKV0C3Nf6o_xJAG48/view?usp=sharing"
+               variant="default"
+               mt="md"
+            >
+               Resume
             </Button>
          </Center>
-         <Group position="left" mt="lg" mx={50}>
-            <Text size="sm" weight={500}>
-               Projects:
-            </Text>
-            <Anchor
-               href="https://algorithmsvisualizers.netlify.app/"
+         <Group position="center" mt="lg" mx={50}>
+            <ActionIcon
+               size="lg"
+               component={Anchor}
                target="_blank"
-               size="sm"
-               color="gray"
+               href="https://github.com/Saifurrahmanemon"
             >
-               Algorithm Visualizer
-            </Anchor>
-            <Anchor
-               href="https://rider-s-warehouse.web.app/"
+               <BrandGithub size={20} />
+            </ActionIcon>
+            <ActionIcon
+               size="lg"
+               component={Anchor}
                target="_blank"
-               size="sm"
-               color="gray"
+               href="https://linkedin.com/in/saifurrahmanemon/"
             >
-               Rider's Warehouse
-            </Anchor>
-            <Anchor
-               href="https://dream-job-consoltant.web.app/"
-               target="_blank"
-               size="sm"
-               color="gray"
-            >
-               Career Coach
-            </Anchor>
+               <BrandLinkedin size={20} />
+            </ActionIcon>
          </Group>
          <Prism mx={50} my={40} language="py">
             {code}

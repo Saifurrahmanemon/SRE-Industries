@@ -1,10 +1,27 @@
-import { Button, Modal, Text } from "@mantine/core";
+import {
+   Button,
+   createStyles,
+   Group,
+   Modal,
+   Text,
+   useMantineTheme,
+} from "@mantine/core";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
-import Loading from "../../Shared/Loading";
+
+const useStyles = createStyles((theme) => ({
+   text: {
+      color: theme.colors.green,
+      fontSize: theme.fontSizes.sm,
+
+      [theme.fn.smallerThan("sm")]: {
+         fontSize: theme.fontSizes.xs,
+      },
+   },
+}));
 
 const CheckoutForm = ({ product }) => {
    const stripe = useStripe();
@@ -16,6 +33,8 @@ const CheckoutForm = ({ product }) => {
    const [clientSecret, setClientSecret] = useState("");
    const [opened, setOpened] = useState(true);
    const navigate = useNavigate();
+   const theme = useMantineTheme();
+   const classes = useStyles();
 
    const { total, email, name, _id } = product;
 
@@ -28,6 +47,8 @@ const CheckoutForm = ({ product }) => {
             }
          });
    }, [total]);
+
+   // for handling the payment
    const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();
@@ -87,10 +108,6 @@ const CheckoutForm = ({ product }) => {
       }
    };
 
-   if (processing) {
-      return <Loading />;
-   }
-
    const handleModalClose = () => {
       setOpened(false);
       navigate("/dashboard/myorders");
@@ -102,7 +119,7 @@ const CheckoutForm = ({ product }) => {
                options={{
                   style: {
                      base: {
-                        fontSize: "16px",
+                        fontSize: theme.fontSizes.sm,
                         color: "#424770",
                         "::placeholder": {
                            color: "#aab7c4",
@@ -114,7 +131,15 @@ const CheckoutForm = ({ product }) => {
                   },
                }}
             />
-            <Button my="xs" type="submit" disabled={!stripe || !clientSecret}>
+            <Button
+               my="sm"
+               type="submit"
+               loading={processing}
+               px={30}
+               compact
+               variant="light"
+               disabled={!stripe || !clientSecret}
+            >
                Pay
             </Button>
          </form>
@@ -125,13 +150,29 @@ const CheckoutForm = ({ product }) => {
                onClose={handleModalClose}
                title="Payment Complete!"
             >
-               <Text color="green">{success}</Text>
-               <Text my="xs">
-                  Your transaction Id:{" "}
-                  <Text color="blue" weight={700}>
-                     {transactionId}
-                  </Text>{" "}
+               <Text className={classes.text} color="green" weight={600}>
+                  {success}
                </Text>
+               <Group noWrap>
+                  {" "}
+                  <Text
+                     my="xs"
+                     size="sm"
+                     color="dimmed"
+                     weight={600}
+                     className={classes.text}
+                  >
+                     Your transaction Id:{" "}
+                  </Text>
+                  <Text
+                     size="md"
+                     color="violet"
+                     className={classes.text}
+                     weight={700}
+                  >
+                     {transactionId}
+                  </Text>
+               </Group>
             </Modal>
          )}
       </>

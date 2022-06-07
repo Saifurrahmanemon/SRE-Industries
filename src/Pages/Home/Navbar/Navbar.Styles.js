@@ -14,11 +14,12 @@ export const useStyles = createStyles((theme) => ({
       top: HEADER_HEIGHT,
       left: 0,
       right: 0,
-      zIndex: 0,
+      zIndex: 1,
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
       borderTopWidth: 0,
       display: "flex",
+      flexDirection: "column",
       justifyContent: "space-evenly",
       overflow: "hidden",
       [theme.fn.largerThan("sm")]: {

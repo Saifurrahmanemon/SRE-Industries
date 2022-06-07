@@ -6,14 +6,14 @@
 
 ---
 
-<a align="center" href=""> SRE Industries</a>
+<a align="center" href="https://sre-industries.web.app/"> SRE Industries</a>
 
 <br/>
-<h2>
+<h1>
     SRE Industries
-</h2>
+</h1>
 
-### An attempt to build full stack product selling and management app. SRE Industries is a full stack web application that allows users to by products and admins to manage their product through modern full fledged dashboard. It uses React for frontend and Node.js for backend. It also uses MongoDB for database.
+### Created a Full stack product selling and management app. SRE Industries is a full stack web application that allows customers to buy automotive parts and admins to manage their products through modern full fledged Dashboard.Front End is developed Using React and Node.js for backend. App  uses MongoDB for Database.
 
 ---
 
@@ -25,14 +25,13 @@
 
 ---
 
--   full stack app with react, node, express, mongodb and more
--   Modern UI with Night Mode
--   Responsive design With mobile support
--  Dashboard for admins to manage products
--  Payment through Stripe
--   Easy to use
--   100% secure and safe with jwt authorization
--   authentication with firebase and google sign in
+✅ Modern UI with Dark Theme<br/>
+✅ Responsive UI With Better user experience <br/>
+✅ Private dashboard for admins to manage company products<br/>
+✅ Payment through Stripe<br/>
+✅ Easy to use<br/>
+✅ 100% secure and safe with jwt authorization<br/>
+✅ authentication with firebase and google sign in
 
 ### Technologies
 
@@ -52,7 +51,7 @@
 ---
 
 -   [Express](https://expressjs.com/)
--   [Dotenv]
+-   [Dotenv](https://www.npmjs.com/package/dotenv)
 -   [Jsonwebtoken](https://jwt.io/)
 -   [MongoDB](https://www.mongodb.com/)
 

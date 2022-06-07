@@ -9,13 +9,13 @@ import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 const useStyles = createStyles((theme) => ({
    root: {
       position: "relative",
-      width: "70%",
-      marginTop: theme.spacing.xl,
+      width: theme.spacing.xl * 10,
+      marginTop: theme.spacing.md,
    },
 
    input: {
       height: "auto",
-      paddingTop: 18,
+      paddingTop: 14,
    },
 
    label: {
@@ -30,7 +30,8 @@ const useStyles = createStyles((theme) => ({
 
 export default function UpdateProfile({ userInfo, refetch }) {
    // You can add these classes as classNames to any Mantine input, it will work the same
-   const { phone, address, email } = userInfo;
+   const { phone, address, email, linkedIn } = userInfo;
+
    const { classes } = useStyles();
 
    const form = useForm({
@@ -50,6 +51,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
       if (data.result.modifiedCount) {
          toast.success("Profile updated successfully");
          refetch();
+         form.reset();
       }
    };
 
@@ -66,7 +68,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
             />
             <TextInput
                label="LinkedIn"
-               placeholder={"saifur rahman"}
+               placeholder={linkedIn}
                classNames={classes}
                {...form.getInputProps("linkedIn")}
             />
@@ -78,7 +80,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                {...form.getInputProps("phone")}
             />
             <Button type="submit" mt="md" variant="light">
-               Update
+               Save
             </Button>
          </form>
       </>

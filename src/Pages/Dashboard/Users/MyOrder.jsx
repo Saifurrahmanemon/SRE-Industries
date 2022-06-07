@@ -96,6 +96,9 @@ const MyOrder = ({ order, index, refetch }) => {
                   <>
                      <Tooltip
                         label={`Transaction ID:  ${order?.transactionId}`}
+                        transition="slide-up"
+                        transitionDuration={300}
+                        transitionTimingFunction="ease"
                         withArrow
                      >
                         {" "}

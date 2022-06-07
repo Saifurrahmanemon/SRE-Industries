@@ -65,6 +65,7 @@ export default function Dashboard() {
                hiddenBreakpoint="sm"
                hidden={!opened}
                width={{ sm: 200, lg: 300 }}
+               onClick={() => setOpened(!opened)}
             >
                <Navbar.Section grow mt="xs">
                   <MainLinks links={admin ? adminLinks : userLinks} />
@@ -79,9 +80,12 @@ export default function Dashboard() {
             <Burger
                opened={opened}
                onClick={() => setOpened((o) => !o)}
-               size="sm"
-               color={theme.colors.gray[6]}
-               mr="xl"
+               size="xs"
+               color={
+                  theme.colorScheme === "dark"
+                     ? theme.white
+                     : theme.colors[theme.primaryColor][7]
+               }
             />
          </MediaQuery>
          <Outlet />

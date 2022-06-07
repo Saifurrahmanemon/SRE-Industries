@@ -1,4 +1,4 @@
-import { Button, createStyles, Group } from "@mantine/core";
+import { Button, createStyles, Group, Text } from "@mantine/core";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
@@ -32,6 +32,19 @@ export const useStyles = createStyles((theme) => ({
          boxShadow: "0 0 0 0.2rem rgba(0, 123, 255, 0.25)",
       },
    },
+
+   text: {
+      fontSize: theme.spacing.md,
+      fontWeight: 700,
+      marginLeft: ".1rem",
+      color:
+         theme.colorScheme === "dark"
+            ? theme.colors.gray[6]
+            : theme.colors.gray[8],
+      [theme.fn.smallerThan("sm")]: {
+         fontSize: theme.spacing.sm,
+      },
+   },
 }));
 
 const AddReview = () => {
@@ -57,23 +70,26 @@ const AddReview = () => {
    };
    return (
       <>
-         <CustomDashboardTitle>add review</CustomDashboardTitle>
+         <CustomDashboardTitle ml={6}>add review: </CustomDashboardTitle>
 
          <form
             className={classes.wrapper}
             action=""
             onSubmit={handleSubmit(onSubmit)}
          >
-            <ReactStars
-               count={5}
-               onChange={setRatings}
-               size={24}
-               isHalf={true}
-               emptyIcon={<Star />}
-               halfIcon={<StarHalf />}
-               fullIcon={<Star />}
-               activeColor="#ffd700"
-            />
+            <Group noWrap spacing="xs">
+               <Text className={classes.text}>Give a Rating: </Text>
+               <ReactStars
+                  count={5}
+                  onChange={setRatings}
+                  size={20}
+                  isHalf={true}
+                  emptyIcon={<Star />}
+                  halfIcon={<StarHalf />}
+                  fullIcon={<Star />}
+                  activeColor="#ffd700"
+               />
+            </Group>
             <textarea
                className={classes.textarea}
                name="description"
