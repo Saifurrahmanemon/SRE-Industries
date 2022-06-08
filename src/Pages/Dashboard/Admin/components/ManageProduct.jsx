@@ -55,7 +55,11 @@ const ManageProduct = ({ product, index, refetch }) => {
          </Modal>
          <tr key={index}>
             <td>{name}</td>
-            <td>{price}</td>
+            <td>
+               <Text size="sm" color="dimmed" weight={600}>
+                  ${price}
+               </Text>
+            </td>
             <td>{availableQuantity}</td>
             <td>
                <Group spacing={0}>

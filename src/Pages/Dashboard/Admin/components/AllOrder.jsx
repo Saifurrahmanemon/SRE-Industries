@@ -16,6 +16,7 @@ import { API_URL } from "../../../../API/rootURL";
 const AllOrder = ({ order, index, refetch }) => {
    const [opened, setOpened] = useState(false);
    const theme = useMantineTheme();
+   const [loading, setLoading] = useState(false);
    const { name, productName, _id } = order;
 
    const handleDeleteItem = async (id) => {
@@ -31,6 +32,7 @@ const AllOrder = ({ order, index, refetch }) => {
          status: "shipped",
       });
       if (data.status) {
+         setLoading(!loading);
          toast.success("Order Shipped Successfully");
          refetch();
       }
@@ -54,6 +56,7 @@ const AllOrder = ({ order, index, refetch }) => {
                   color="red"
                   onClick={() => {
                      handleDeleteItem(_id);
+                     setOpened(false);
                   }}
                >
                   Delete
@@ -64,8 +67,25 @@ const AllOrder = ({ order, index, refetch }) => {
             </Group>
          </Modal>
          <tr>
-            <td>{name}</td>
-            <td>{productName}</td>
+            <td>{index + 1}</td>
+            <td>
+               <Text size="sm" weight={600} color="dimmed">
+                  {name}
+               </Text>
+            </td>
+            <td>
+               <Text
+                  size="sm"
+                  weight={700}
+                  color={
+                     theme.colorScheme === "dark"
+                        ? theme.colors.gray[3]
+                        : theme.colors.gray[8]
+                  }
+               >
+                  {productName}
+               </Text>
+            </td>
             <td>
                {!order?.paid ? (
                   <>
@@ -82,7 +102,11 @@ const AllOrder = ({ order, index, refetch }) => {
                            <Button
                               compact
                               size="xs"
-                              onClick={() => handleShipping(_id)}
+                              loading={loading}
+                              onClick={() => {
+                                 handleShipping(_id);
+                                 setLoading(!loading);
+                              }}
                               color="yellow"
                            >
                               Pending

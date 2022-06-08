@@ -1,10 +1,11 @@
 import { Avatar, Badge, Button, Group, Text } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axiosPrivate from "../../../../API/axiosPrivate";
 import { API_URL } from "../../../../API/rootURL";
 const ShowAdmin = ({ user: userInfo, index, refetch }) => {
    const { email, img, phone } = userInfo;
+   const [loading, setLoading] = useState(false);
 
    const handleMakeAdmin = async (email) => {
       const res = await axiosPrivate.put(
@@ -19,6 +20,7 @@ const ShowAdmin = ({ user: userInfo, index, refetch }) => {
       if (res?.data?.modifiedCount > 0) {
          toast.success(`Yes!! Successfully made an admin `);
          refetch();
+         setLoading(!loading);
       }
    };
 
@@ -45,7 +47,7 @@ const ShowAdmin = ({ user: userInfo, index, refetch }) => {
             </td>
             <td>
                <Text size="sm" weight={500} color="gray">
-                  {phone === null ? "No number" : phone}
+                  {phone === null ? "Not Given" : phone}
                </Text>
             </td>
 
@@ -59,7 +61,11 @@ const ShowAdmin = ({ user: userInfo, index, refetch }) => {
                      variant="light"
                      color="violet"
                      compact
-                     onClick={() => handleMakeAdmin(email)}
+                     loading={loading}
+                     onClick={() => {
+                        handleMakeAdmin(email);
+                        setLoading(!loading);
+                     }}
                   >
                      Make Admin
                   </Button>

@@ -35,11 +35,11 @@ const ManageAllOrders = () => {
             >
                <thead>
                   <tr>
+                     <th></th>
                      <th>User</th>
                      <th>Product Name</th>
                      <th>Status </th>
                      <th>Remove</th>
-                     <th></th>
                   </tr>
                </thead>
                <tbody>
