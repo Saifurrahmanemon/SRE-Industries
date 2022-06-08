@@ -8,6 +8,12 @@
 
 <a align="center" href="https://sre-industries.web.app/"> SRE Industries</a>
 
+---
+
+Customer Side | Admin Side
+:-: | :-:
+<video src='UserSide.mp4' width=300/> | <video src='AdminSide.mp4' width=300/>
+
 <br/>
 <h1>
     SRE Industries
