@@ -1,6 +1,13 @@
 import { createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
+   userDetailsWrapper: {
+      padding: theme.spacing.lg,
+      [theme.fn.smallerThan("md")]: {
+         padding: 0,
+         marginTop: theme.spacing.xs,
+      },
+   },
    wrapper: {
       minHeight: 400,
       boxSizing: "border-box",
@@ -54,11 +61,10 @@ export const useStyles = createStyles((theme) => ({
    },
 
    input: {
-      backgroundColor: theme.white,
+      color: theme.colorScheme === "dark" ? theme.white : theme.colors.dark[5],
       width: "220px",
 
       borderColor: theme.colors.gray[4],
-      color: theme.black,
 
       "&::placeholder": {
          color: theme.colors.gray[5],

@@ -9,7 +9,7 @@ import {
    TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import { Mail, Minus, Plus } from "tabler-icons-react";
@@ -81,7 +81,7 @@ const UserDetails = ({ email, name, productId, product }) => {
 
    return (
       <>
-         <Paper p="lg">
+         <Paper className={classes.userDetailsWrapper}>
             <Group className={classes.responsiveText} spacing="xs" ml={25}>
                <Avatar src={user?.photoURL} />
                <Group direction="column" spacing="xs">

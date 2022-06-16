@@ -9,7 +9,6 @@ import {
    Text,
    useMantineTheme,
 } from "@mantine/core";
-import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import fedex from "../../Assets/svg/fedex.svg";

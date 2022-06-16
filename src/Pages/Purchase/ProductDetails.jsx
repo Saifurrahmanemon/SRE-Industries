@@ -6,7 +6,6 @@ import {
    Spoiler,
    Text,
 } from "@mantine/core";
-import React from "react";
 import CustomBadge from "../Components/CustomBadge";
 const useStyles = createStyles((theme) => ({
    main: {
@@ -47,6 +46,7 @@ const ProductDetails = ({ product }) => {
                   src={img}
                   alt={productName}
                   width={150}
+                  mr="xs"
                   style={{
                      borderRadius: "md",
                   }}

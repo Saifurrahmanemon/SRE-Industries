@@ -52,6 +52,9 @@ Customer Side | Admin Side
 -   [Axios](https://axios-http.com/)
 -   [Tabler-Icon React](https://tabler-icons-react.vercel.app/)
 
+---
+### [Server Side Code](https://github.com/Saifurrahmanemon/SRE_Industries_server)
+---
 ### Backend
 
 ---
