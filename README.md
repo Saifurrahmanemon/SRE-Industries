@@ -10,9 +10,6 @@
 
 ---
 
-Customer Side | Admin Side
-:-: | :-:
-<video src='UserSide.mp4' width=300/> | <video src='AdminSide.mp4' width=300/>
 
 <br/>
 <h1>
@@ -22,6 +19,14 @@ Customer Side | Admin Side
 ### Created a Full stack product selling and management app. SRE Industries is a full stack web application that allows customers to buy automotive parts and admins to manage their products through modern full fledged Dashboard.Front End is developed Using React and Node.js for backend. App  uses MongoDB for Database.
 
 ---
+
+https://user-images.githubusercontent.com/70877552/172598993-60f555fc-7242-497a-a8c9-c705fa72d1e0.mp4
+
+
+
+
+https://user-images.githubusercontent.com/70877552/172610370-0599d438-0496-452d-8614-11c12b13aecd.mp4
+
 
 <br/>
 
@@ -55,6 +60,7 @@ Customer Side | Admin Side
 ---
 ### [Server Side Code](https://github.com/Saifurrahmanemon/SRE_Industries_server)
 ---
+
 ### Backend
 
 ---
