@@ -6,7 +6,7 @@ import {
    Text,
    useMantineTheme,
 } from "@mantine/core";
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { Trash } from "tabler-icons-react";
 import axiosPrivate from "../../../../API/axiosPrivate";
@@ -56,7 +56,7 @@ const ManageProduct = ({ product, index, refetch }) => {
          <tr key={index}>
             <td>{name}</td>
             <td>
-               <Text size="sm" color="dimmed" weight={600}>
+               <Text size="sm" color="gray" weight={600}>
                   ${price}
                </Text>
             </td>

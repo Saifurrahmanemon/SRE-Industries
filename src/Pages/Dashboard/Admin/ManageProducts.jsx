@@ -1,5 +1,4 @@
 import { ScrollArea, Table } from "@mantine/core";
-import React from "react";
 import useParts from "../../../Hooks/useParts";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";

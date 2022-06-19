@@ -8,7 +8,6 @@ import {
    Image,
    Text,
 } from "@mantine/core";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from "tabler-icons-react";
 import Wishlist from "../../Components/Wishlist";

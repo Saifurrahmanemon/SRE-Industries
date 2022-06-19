@@ -7,7 +7,7 @@ import {
    Text,
    useMantineTheme,
 } from "@mantine/core";
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { Trash } from "tabler-icons-react";
 import axiosPrivate from "../../../../API/axiosPrivate";
@@ -69,7 +69,7 @@ const AllOrder = ({ order, index, refetch }) => {
          <tr>
             <td>{index + 1}</td>
             <td>
-               <Text size="sm" weight={600} color="dimmed">
+               <Text size="sm" color="gray" weight={600}>
                   {name}
                </Text>
             </td>

@@ -32,8 +32,8 @@ export const useStyles = createStyles((theme) => ({
    tagline: {
       color: theme.colorScheme === "dark" ? theme.white : theme.black,
       fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-      fontSize: 23,
-      lineHeight: 1.2,
+      fontSize: 21,
+      lineHeight: 1.1,
       fontWeight: 700,
       margin: 0,
 

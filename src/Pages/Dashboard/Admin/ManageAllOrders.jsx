@@ -1,5 +1,4 @@
 import { ScrollArea, Table } from "@mantine/core";
-import React from "react";
 import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";

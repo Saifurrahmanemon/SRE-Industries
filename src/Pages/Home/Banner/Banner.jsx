@@ -7,7 +7,6 @@ import {
    ThemeIcon,
    Title,
 } from "@mantine/core";
-import React from "react";
 import { Check } from "tabler-icons-react";
 import car from "../../../Assets/svg/car.svg";
 import { useStyles } from "./Banner.styles";

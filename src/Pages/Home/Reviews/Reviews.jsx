@@ -1,5 +1,4 @@
 import { Box, ScrollArea } from "@mantine/core";
-import React from "react";
 import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
@@ -26,9 +25,12 @@ const Reviews = () => {
                }}
                my="md"
             >
-               {reviews?.data.map((review, index) => (
-                  <Review review={review} key={index}></Review>
-               ))}
+               {reviews?.data
+                  .slice()
+                  .reverse()
+                  .map((review, index) => (
+                     <Review review={review} key={index}></Review>
+                  ))}
             </Box>
          </ScrollArea>
       </>

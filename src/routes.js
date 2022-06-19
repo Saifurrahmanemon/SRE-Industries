@@ -1,4 +1,3 @@
-import React from "react";
 import { useRoutes } from "react-router-dom";
 import { RequireAuth } from "./Pages";
 import ForgotPassword from "./Pages/Auth/ForgotPassword";
@@ -15,7 +14,9 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import AddReview from "./Pages/Dashboard/Users/AddReview";
 import MyOrders from "./Pages/Dashboard/Users/MyOrders";
+import OtherSettings from "./Pages/Dashboard/Users/OtherSettings";
 import Payment from "./Pages/Dashboard/Users/Payment";
+import UserHistory from "./Pages/Dashboard/Users/UserHistory";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
@@ -44,6 +45,22 @@ const Router = () => {
                element: (
                   <RequireUser>
                      <Payment />
+                  </RequireUser>
+               ),
+            },
+            {
+               path: "history",
+               element: (
+                  <RequireUser>
+                     <UserHistory />
+                  </RequireUser>
+               ),
+            },
+            {
+               path: "othersettings",
+               element: (
+                  <RequireUser>
+                     <OtherSettings />
                   </RequireUser>
                ),
             },

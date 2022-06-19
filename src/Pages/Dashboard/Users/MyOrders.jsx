@@ -1,10 +1,7 @@
 import { ScrollArea, Table } from "@mantine/core";
-import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useQuery } from "react-query";
-import axiosPrivate from "../../../API/axiosPrivate";
-import { API_URL } from "../../../API/rootURL";
 import auth from "../../../firebase.init";
+import useMyOrders from "../../../Hooks/useMyOrders";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";
 import MyOrder from "./MyOrder";
@@ -12,14 +9,7 @@ const MyOrders = () => {
    const [user] = useAuthState(auth);
    const email = user?.email;
 
-   const {
-      data: orders,
-      isLoading,
-      refetch,
-   } = useQuery(
-      ["orders", email],
-      async () => await axiosPrivate.get(`${API_URL}orders/${email}`)
-   );
+   const { orders, isLoading, refetch } = useMyOrders(email);
 
    if (isLoading) {
       return <Loading />;
