@@ -5,7 +5,6 @@ import {
    ThemeIcon,
    useMantineTheme,
 } from "@mantine/core";
-import React from "react";
 import { ColorSwatch } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -15,8 +14,12 @@ const useStyles = createStyles((theme) => ({
       overflow: "hidden",
       transition: "transform 300ms ease, box-shadow 100ms ease",
       padding: theme.spacing.xl,
+      marginTop: theme.spacing.xl,
       paddingLeft: theme.spacing.xl * 2,
-
+      [theme.fn.smallerThan("sm")]: {
+         fontSize: 8,
+         marginTop: theme.spacing.xl,
+      },
       "&:hover": {
          boxShadow: theme.shadows.md,
          transform: "scale(1.02)",
@@ -42,7 +45,7 @@ function BlogItem({ title, description }) {
    const { classes } = useStyles();
    const theme = useMantineTheme();
    return (
-      <Paper my={40} mx={70} withBorder radius="md" className={classes.card}>
+      <Paper withBorder radius="md" className={classes.card}>
          <ThemeIcon
             size="xl"
             radius="md"

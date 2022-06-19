@@ -9,7 +9,6 @@ import {
    Text,
 } from "@mantine/core";
 import { Prism } from "@mantine/prism";
-import React from "react";
 import { BrandGithub, BrandLinkedin } from "tabler-icons-react";
 
 const code = `class Emon:
@@ -40,7 +39,7 @@ export default function Portfolio() {
       <Paper
          radius="md"
          withBorder
-         p="lg"
+         pt="lg"
          sx={(theme) => ({
             backgroundColor:
                theme.colorScheme === "dark"
