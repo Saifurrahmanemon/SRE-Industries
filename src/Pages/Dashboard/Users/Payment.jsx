@@ -1,7 +1,6 @@
-import { Box, Container, createStyles, Paper, Text } from "@mantine/core";
+import { Box, Container, Paper, Text } from "@mantine/core";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import axiosPrivate from "../../../API/axiosPrivate";
@@ -9,53 +8,12 @@ import { API_URL } from "../../../API/rootURL";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";
 import CheckoutForm from "./CheckoutForm";
+import { useStyles } from "./Payment.styles";
 
 // stripe open key
 const stripePromise = loadStripe(
    "pk_test_51Jn2enKEK5s8ugFqWpDRBr1nYooCWmIs7BiPe9M5XAsbjeF2IU8peOKxX01UBs2G39QH3xZP8mn0qUDYVNaEV32100lhf7RYW0"
 );
-
-const useStyles = createStyles((theme) => ({
-   container: {
-      margin: 40,
-      [theme.fn.smallerThan("sm")]: {
-         margin: 0,
-      },
-   },
-
-   wrapper: {
-      display: "flex",
-      gap: 20,
-      alignItems: "center",
-      justifyContent: "space-between",
-      [theme.fn.smallerThan("sm")]: {
-         flexDirection: "column",
-         alignItems: "flex-start",
-      },
-   },
-
-   text: {
-      margin: `${theme.spacing.xs}px 0px `,
-      color:
-         theme.colorScheme === "dark"
-            ? theme.colors.white
-            : theme.colors.gray[6],
-      fontWeight: 500,
-      fontSize: theme.fontSizes.md,
-      [theme.fn.smallerThan("sm")]: {
-         fontSize: theme.fontSizes.sm,
-      },
-   },
-   span: {
-      fontWeight: 700,
-      color: theme.colorScheme === "dark" ? theme.white : theme.colors.gray[9],
-      fontSize: theme.fontSizes.sm,
-      fontFamily: "Roboto",
-      [theme.fn.smallerThan("sm")]: {
-         fontSize: theme.fontSizes.xs,
-      },
-   },
-}));
 
 const Payment = () => {
    const { id } = useParams();
