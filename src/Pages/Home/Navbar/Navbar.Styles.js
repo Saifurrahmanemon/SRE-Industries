@@ -64,7 +64,7 @@ export const useStyles = createStyles((theme) => ({
       color:
          theme.colorScheme === "dark"
             ? theme.colors.dark[1]
-            : theme.colors.gray[6],
+            : theme.colors.gray[7],
       padding: `7px ${theme.spacing.sm}px`,
       paddingBottom: theme.spacing.sm,
       fontWeight: 700,

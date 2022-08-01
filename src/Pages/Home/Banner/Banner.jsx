@@ -25,7 +25,7 @@ export default function Banner() {
                      Automotive components manufacturer
                   </span>
                </Title>
-               <Text color="dimmed" mt="sm">
+               <Text color="gray" mt="sm">
                   We are committed to supplying our customers with robust
                   automotive components and reliable services through our
                   international commercial and production network

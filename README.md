@@ -21,10 +21,6 @@
 ---
 
 
-https://user-images.githubusercontent.com/70877552/175271670-9400c50b-829e-4e10-9929-76c01f88591f.mp4
-
-
-
 
 
 
