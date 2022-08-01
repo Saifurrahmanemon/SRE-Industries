@@ -2,7 +2,7 @@
    SRE Industries
 </h1>
 
-## Full fledged web application built using MERN stack
+## Full stack web application built using MERN stack
 
 ---
 
@@ -16,12 +16,12 @@
     SRE Industries
 </h1>
 
-### Created a Full stack product selling and management app. SRE Industries is a full stack web application that allows customers to buy automotive parts and admins to manage their products through modern full fledged Dashboard.Front End is developed Using React and Node.js for backend. App  uses MongoDB for Database.
+### SRE Industries is a full stack web application that allows customers to buy automotive parts and admins to manage their products through modern full fledged Dashboard.Front End is developed Using React and Node.js for backend. App  uses MongoDB for Database.
 
 ---
 
 
-
+https://user-images.githubusercontent.com/70877552/182121676-b22634b8-aaa5-45e2-af19-f8bb3d4aec93.mp4
 
 
 
@@ -44,7 +44,6 @@ https://user-images.githubusercontent.com/70877552/172610370-0599d438-0496-452d-
 ✅ 100% secure and safe with jwt authorization<br/>
 ✅ authentication with firebase and google sign in
 
-### Technologies
 
 ---
 
