@@ -29,7 +29,11 @@ const userLinks = [
    { link: "", label: "My Profile", icon: Users },
    { link: "/dashboard/addreview", label: "Add Review", icon: Ballpen },
    { link: "/dashboard/history", label: "History", icon: History },
-   { link: "/dashboard/othersettings", label: "Other Settings", icon: Settings },
+   {
+      link: "/dashboard/othersettings",
+      label: "Other Settings",
+      icon: Settings,
+   },
 ];
 
 //links for admin
