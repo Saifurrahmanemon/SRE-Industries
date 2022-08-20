@@ -27,6 +27,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.1",
     "tabler-icons-react": "^1.48.0",
+    "tobase64converter": "^1.0.3",
     "web-vitals": "^2.1.4",
     "zustand": "^4.0.0-rc.1"
   },

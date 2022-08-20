@@ -3,9 +3,10 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useForm } from '@mantine/form';
 import React, { useCallback } from 'react';
 import { toast } from 'react-toastify';
+import toBase64 from 'tobase64converter';
 import axiosPrivate from '../../../API/axiosPrivate';
 import { API_URL } from '../../../API/rootURL';
-import { toBase64 } from '../../../Utils/Base64Converter';
+
 import CustomDashboardTitle from '../../Components/CustomDashboardTitle';
 import { useStyles } from './AddProduct.styles';
 import { dropzoneChildren } from './components/DropZoneConfig';
@@ -30,6 +31,7 @@ export default function AddInventory() {
          const [file] = acceptedFiles;
 
          const img = await toBase64(file);
+         console.log(img);
 
          form.setFieldValue('img', img);
       },

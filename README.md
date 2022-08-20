@@ -6,7 +6,6 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
   </a>
-
 </p>
 
 https://user-images.githubusercontent.com/70877552/182121676-b22634b8-aaa5-45e2-af19-f8bb3d4aec93.mp4
@@ -14,6 +13,10 @@ https://user-images.githubusercontent.com/70877552/182121676-b22634b8-aaa5-45e2-
 https://user-images.githubusercontent.com/70877552/172610370-0599d438-0496-452d-8614-11c12b13aecd.mp4
 
 <br/>
+
+### SRE Industries is a full stack web application that allows customers to buy automotive parts and admins to manage their products through modern full fledged Dashboard.Front End is developed Using React and Node.js for backend. App uses MongoDB for Database and Stripe for payment.
+
+---
 
 ## About The Project
 
@@ -23,6 +26,7 @@ In this project I have been exposed to many practical techniques that I wouldn't
 
 -  **Planning and implementing reusable complex UI components**
 -  **Working with axios interceptors for secure data fetching and error handling**
+-  **Writing and publishing my own npm package**
 -  **Creating pixel-perfect designs for different devices**
 -  **Working in functional programming paradigm with DRY concept in mind**
 -  **Integrated with Stripe for secure Payment**
