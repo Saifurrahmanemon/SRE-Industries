@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { API_URL } from "../API/rootURL";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { API_URL } from '../API/rootURL';
 
 const useAdmin = (user) => {
    const [admin, setAdmin] = useState(false);
