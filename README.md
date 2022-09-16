@@ -20,7 +20,7 @@ https://user-images.githubusercontent.com/70877552/172610370-0599d438-0496-452d-
 
 ## About The Project
 
-This project was built to get myself confortable building projects with large code base and work in a professional real-world development environment with a short deadline in mind.
+This project was built to get myself conformable building projects with large code base and work in a professional real-world development environment with a short deadline in mind.
 
 In this project I have been exposed to many practical techniques that I wouldn't have learned otherwise. Examples as following but not limited to:
 

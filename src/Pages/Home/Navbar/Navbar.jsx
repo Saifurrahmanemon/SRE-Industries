@@ -9,36 +9,36 @@ import {
    Text,
    Title,
    Transition,
-} from "@mantine/core";
-import { useBooleanToggle } from "@mantine/hooks";
-import { signOut } from "firebase/auth";
-import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
-import { Login, Logout } from "tabler-icons-react";
-import Logo from "../../../Assets/logo/AppLogo";
-import auth from "../../../firebase.init";
-import CustomSignInOutButton from "../../Components/CustomSignInOutButton";
-import MoodToggleButton from "../../Components/MoodToggleButton";
-import { HEADER_HEIGHT, useStyles } from "./Navbar.Styles";
+} from '@mantine/core';
+import { useBooleanToggle } from '@mantine/hooks';
+import { signOut } from 'firebase/auth';
+import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { Login, Logout } from 'tabler-icons-react';
+import Logo from '../../../Assets/logo/AppLogo';
+import auth from '../../../firebase.init';
+import CustomSignInOutButton from '../../Components/CustomSignInOutButton';
+import MoodToggleButton from '../../Components/MoodToggleButton';
+import { HEADER_HEIGHT, useStyles } from './Navbar.Styles';
 
 const mainLinks = [
    {
-      link: "",
-      label: "Home",
+      link: '',
+      label: 'Home',
    },
 
    {
-      link: "dashboard",
-      label: "Dashboard",
+      link: 'dashboard',
+      label: 'Dashboard',
    },
    {
-      link: "blog",
-      label: "Blog",
+      link: 'blog',
+      label: 'Blog',
    },
    {
-      link: "portfolio",
-      label: "Portfolio",
+      link: 'portfolio',
+      label: 'Portfolio',
    },
 ];
 
@@ -58,7 +58,7 @@ export default function Navbar() {
    //for sign in
 
    const handleSignIn = () => {
-      navigate("/login");
+      navigate('/login');
    };
 
    const mainItems = mainLinks.map((item, index) => (
@@ -72,8 +72,7 @@ export default function Navbar() {
          onClick={(event) => {
             setActive(index);
             toggleOpened(false);
-         }}
-      >
+         }}>
          {item.label}
       </Anchor>
    ));
@@ -82,39 +81,31 @@ export default function Navbar() {
       <Header height={HEADER_HEIGHT}>
          <Container className={classes.inner}>
             <Group>
-               {" "}
-               <Title onClick={() => navigate("/")} ml={-60} mt={10}>
+               {' '}
+               <Title onClick={() => navigate('/')} ml={-60} mt={10}>
                   <Logo />
                </Title>
                <MoodToggleButton ml={-40} />
                {user ? (
                   <CustomSignInOutButton
-                     leftIcon={<Logout color="red" strokeOpacity={1} />}
-                     color="red"
-                     onClick={handleSignOut}
-                  >
+                     leftIcon={<Logout color='red' strokeOpacity={1} />}
+                     color='red'
+                     onClick={handleSignOut}>
                      <Text className={classes.authText}>Sign out</Text>
                   </CustomSignInOutButton>
                ) : (
-                  <CustomSignInOutButton
-                     leftIcon={<Login />}
-                     onClick={handleSignIn}
-                  >
+                  <CustomSignInOutButton leftIcon={<Login />} onClick={handleSignIn}>
                      <Text className={classes.authText}>Sign in</Text>
                   </CustomSignInOutButton>
                )}
             </Group>
             <div className={classes.links}>
-               <Group position="right" mt={-5} mb={5}>
-                  <Badge sx={{ marginRight: 0 }} radius="md" size="sm">
-                     {user ? user.displayName : "Guest"}
+               <Group position='right' mt={-5} mb={5}>
+                  <Badge sx={{ marginRight: 0 }} radius='md' size='sm'>
+                     {user ? user.displayName : 'Guest'}
                   </Badge>
                </Group>
-               <Group
-                  spacing={0}
-                  position="right"
-                  className={classes.mainLinks}
-               >
+               <Group spacing={0} position='right' className={classes.mainLinks}>
                   {mainItems}
                </Group>
             </div>
@@ -122,13 +113,9 @@ export default function Navbar() {
                opened={opened}
                onClick={() => toggleOpened()}
                className={classes.burger}
-               size="sm"
+               size='sm'
             />
-            <Transition
-               transition="pop-top-right"
-               duration={200}
-               mounted={opened}
-            >
+            <Transition transition='pop-top-right' duration={200} mounted={opened}>
                {(styles) => (
                   <Paper className={classes.dropdown} withBorder style={styles}>
                      {mainItems}
