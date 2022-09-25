@@ -14,15 +14,15 @@ https://user-images.githubusercontent.com/70877552/172610370-0599d438-0496-452d-
 
 <br/>
 
-### SRE Industries is a full stack web application that allows customers to buy automotive parts and admins to manage their products through modern full fledged Dashboard.Front End is developed Using React and Node.js for backend. App uses MongoDB for Database and Stripe for payment.
+### SRE Industries is a full-stack web application that allows customers to buy automotive parts and admins to manage their products through a modern full-fledged Dashboard. Frontend is developed Using React and Node.js for the backend. App uses MongoDB for Database and Stripe for payment.
 
 ---
 
 ## About The Project
 
-This project was built to get myself conformable building projects with large code base and work in a professional real-world development environment with a short deadline in mind.
+This project was built to get conformable building projects with large code bases and work in a professional real-world development environment with a short deadline in mind.
 
-In this project I have been exposed to many practical techniques that I wouldn't have learned otherwise. Examples as following but not limited to:
+In this project, I have been exposed to many practical techniques that I wouldn't have learned otherwise. Examples as the following but are not limited to:
 
 -  **Planning and implementing reusable complex UI components**
 -  **Working with axios interceptors for secure data fetching and error handling**
